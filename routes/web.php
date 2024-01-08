@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +20,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/check-access', 'HomeController@rbacCheck')->name('check-access');
-Route::post('/check-access', 'HomeController@chooseRole')->name('choose-role');
-Route::get('/menus', 'HomeController@loadMenu')->name('load-menu');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/check-access', [HomeController::class, 'rbacCheck'])->name('check-access');
+Route::post('/check-access', [HomeController::class, 'chooseRole'])->name('choose-role');
+Route::get('/menus', [HomeController::class, 'loadMenu'])->name('load-menu');
 
 // Route::middleware('auth')->group(function () {
 //     Route::prefix('dashboard')->group(function () {

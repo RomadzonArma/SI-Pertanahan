@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Model\Action;
 use App\Model\Menu;
 use App\Model\MenuRole;

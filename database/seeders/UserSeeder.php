@@ -1,9 +1,12 @@
 <?php
 
+namespace Database\Seeders;
+
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class UserSeeder extends Seeder
 {
@@ -22,6 +25,6 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()
         ]);
 
-        factory(App\User::class, 5)->create();
+        factory(User::class, 5)->create();
     }
 }

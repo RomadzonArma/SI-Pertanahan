@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'App\Http\Controllers';
+    // protected $namespace = 'App\Http\Controllers';
 
     /**
      * The path to the "home" route for your application.
@@ -67,7 +67,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-            ->namespace($this->namespace)
+            // ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
     }
 
@@ -82,35 +82,35 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->namespace)
+            // ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
     }
 
     protected function mapDashboardRoutes()
     {
         Route::prefix('dashboard')
-            ->namespace($this->namespace)
+            // ->namespace($this->namespace)
             ->group(base_path('routes/panel/dashboard.php'));
     }
 
     protected function mapUserRoutes()
     {
         Route::prefix('users')
-            ->namespace($this->namespace)
+            // ->namespace($this->namespace)
             ->group(base_path('routes/panel/users.php'));
     }
 
     protected function mapMenuRoutes()
     {
         Route::prefix('manajemen-menu')
-            ->namespace($this->namespace)
+            // ->namespace($this->namespace)
             ->group(base_path('routes/panel/menu.php'));
     }
 
     protected function mapOtoritasRoutes()
     {
         Route::prefix('otoritas')
-            ->namespace($this->namespace)
+            // ->namespace($this->namespace)
             ->group(base_path('routes/panel/otoritas.php'));
     }
 }

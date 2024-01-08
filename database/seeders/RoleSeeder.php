@@ -1,10 +1,13 @@
 <?php
 
+namespace Database\Seeders;
+
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
-class ActionSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,12 +16,15 @@ class ActionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('actions')->truncate();
-        $arr = ['view', 'create', 'update', 'delete', 'download'];
+        DB::table('roles')->truncate();
+
+        $arr = ['administrator', 'user'];
 
         foreach ($arr as $key => $value) {
-            DB::table('actions')->insert([
+            DB::table('roles')->insert([
                 'name' => $value,
+                'slug_name' => Str::snake($value),
+                'is_active' => 1,
                 'created_at' => Carbon::now(),
             ]);
         }
