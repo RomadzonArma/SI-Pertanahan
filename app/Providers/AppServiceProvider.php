@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +27,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::share('plugins', []);
+
+        Blade::directive('jsScript', function ($str) {
+            $path = asset($str . "?q=" . time());
+            return '<script src="' . $path . '"></script>';
+        });
+
+        if (in_array(env('APP_ENV'), ['production', 'ministry', 'egov'])) {
+            \URL::forceScheme('https');
+        }
     }
 }
