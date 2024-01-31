@@ -42,7 +42,6 @@ class OtoritasController extends Controller
             $role = Role::create([
                 'name' => $request->name,
                 'slug_name' => Str::snake($request->name),
-                'type' => 'staff',
                 'is_active' => 1,
             ]);
 
@@ -68,9 +67,7 @@ class OtoritasController extends Controller
                 $role->save();
             }
 
-            if ($role->wasChanged()) {
-                return response()->json(['status' => true], 200);
-            }
+            return response()->json(['status' => true, 'msg' => 'ok'], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }

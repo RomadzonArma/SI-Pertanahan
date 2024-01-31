@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,8 @@ Route::get('/menus', [HomeController::class, 'loadMenu'])->name('load-menu');
 //     Route::prefix('otoritas')->group(function () {
 //     });
 // });
+
+
+Route::get('/test-a', function () {
+    return Hash::make('eskelapa');
+});
