@@ -34,7 +34,8 @@ class RegisterPemohonController extends Controller
                 'no_telp' => $request->no_telp,
                 'alamat' => $request->alamat,
                 'username' => $request->username,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'is_verified' => '0'
             ]);
 
             $id = $profil_pemohon->id;
