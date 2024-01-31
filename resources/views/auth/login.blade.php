@@ -4,20 +4,14 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Skote</title>
+    <title>Keterangan Rencana Kota - Tegal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Skote" name="description" />
     <meta content="alief" name="author" />
-    <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
-
-    <!-- Bootstrap Css -->
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body>
@@ -107,7 +101,11 @@
                                         <button class="btn btn-primary btn-block waves-effect waves-light"
                                             type="submit">Masuk</button>
                                     </div>
-
+                                    <div class="mt-3">
+                                        <p class="mb-0">Belum mempunyai akun ?<a
+                                                href="{{ route('register-pemohon') }}" class="hover"> Daftar</a>
+                                        </p>
+                                    </div>
                                 </form>
                             </div>
 
@@ -117,7 +115,7 @@
                         <p class="mb-0">©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Skote
+                            </script> Keterangan Rencana Kota - Tegal
                         </p>
                     </div>
 

@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>{{ $title ?? config('app.name') }} | {{config('app.name')}}</title>
+    <title>{{ $title ?? config('app.name') }} | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Boilerplate Laravel System" name="description" />
     <meta content="Phicosdev" name="author" />
@@ -38,19 +38,23 @@
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="{{ config('app.theme') }}assets/images/logo.svg" alt="" height="22">
+                                <img src="{{ config('app.theme') }}assets/images/logo.svg" alt=""
+                                    height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ config('app.theme') }}assets/images/logo-dark.png" alt="" height="17">
+                                <img src="{{ config('app.theme') }}assets/images/logo-dark.png" alt=""
+                                    height="17">
                             </span>
                         </a>
 
                         <a href="index.html" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="{{ config('app.theme') }}assets/images/logo-light.svg" alt="" height="22">
+                                <img src="{{ config('app.theme') }}assets/images/logo-light.svg" alt=""
+                                    height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ config('app.theme') }}assets/images/logo-light.png" alt="" height="19">
+                                <img src="{{ config('app.theme') }}assets/images/logo-light.png" alt=""
+                                    height="19">
                             </span>
                         </a>
                     </div>
@@ -60,6 +64,17 @@
                         id="vertical-menu-btn">
                         <i class="fa fa-fw fa-bars"></i>
                     </button>
+                    @php
+                        use Carbon\Carbon;
+                        $tanggal = Carbon::now();
+                        $formattedDate = $tanggal->translatedFormat('F Y');
+                    @endphp
+                    <div class="dropdown dropdown-mega d-none d-lg-block ml-2">
+                        <button type="button" class="btn header-item waves-effect" onclick="ganti_session();">
+                            <span key="t-megamenu">{{ $formattedDate }}</span>
+                            <i class="mdi mdi-chevron-down"></i>
+                        </button>
+                    </div>
 
                     <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect">
                         {{ Str::ucfirst(session('role_name')) }}
@@ -80,9 +95,9 @@
                                     class="bx bx-key font-size-16 align-middle mr-1"></i> <span
                                     key="t-change-password">Ganti Kata Sandi</span></a>
                             @if (session('multi_role'))
-                            <a class="dropdown-item" href="{{ route('choose-role') }}"><i
-                                    class="bx bx-lock-open font-size-16 align-middle mr-1"></i> <span
-                                    key="t-lock-screen">Ganti Otoritas</span></a>
+                                <a class="dropdown-item" href="{{ route('choose-role') }}"><i
+                                        class="bx bx-lock-open font-size-16 align-middle mr-1"></i> <span
+                                        key="t-lock-screen">Ganti Otoritas</span></a>
                             @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-danger" href="#"
@@ -131,8 +146,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-flex align-items-center justify-content-between">
-                                <h4 class="mb-0 font-size-18">{{ config('app.name') }} | {{ $title ?? 'Selamat Datang'
-                                    }}</h4>
+                                <h4 class="mb-0 font-size-18">{{ config('app.name') }} |
+                                    {{ $title ?? 'Selamat Datang' }}</h4>
                             </div>
                         </div>
                     </div>
