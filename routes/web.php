@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RegisterPemohonController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,6 +23,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/sendWa', [TestingController::class, 'sendWa'])->name('send-wa');
 
 Route::get('/register/pemohon', function () {
     return view('auth.registerpemohon', []);

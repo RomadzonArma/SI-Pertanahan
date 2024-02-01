@@ -38,7 +38,8 @@
   "autoload": {
     "files": [
       "app/helpers/rbac.php",
-      "app/helpers/icon.php"
+      "app/helpers/icon.php",
+      "app/helpers/WaHelper.php"
     ],
     "psr-4": {
       "App\\": "app/",
