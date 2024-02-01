@@ -28,6 +28,7 @@ $plugins = ['datatable', 'swal', 'select2'];
                                 <th>Username</th>
                                 <th>Nama Lengkap</th>
                                 <th>Status Keaktifan</th>
+                                <th>Status Verifikasi</th>
                                 <th>Aksi</th>
                                 <th></th>
                             </tr>

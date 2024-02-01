@@ -24,7 +24,7 @@ class UsersController extends Controller
 
     public function data(Request $request)
     {
-        $list = User::select(DB::raw('id, name, username, is_active, created_at'))->with('roles');
+        $list = User::select(DB::raw('id, name, username, is_active, is_verified, created_at'))->with('roles');
 
         return DataTables::of($list)
             ->addIndexColumn()
@@ -84,6 +84,25 @@ class UsersController extends Controller
             $user = User::find($request->id);
 
             $user->is_active = $request->value;
+
+            if ($user->isDirty()) {
+                $user->save();
+            }
+
+            if ($user->wasChanged()) {
+                return response()->json(['status' => true], 200);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function switchVerified(Request $request)
+    {
+        try {
+            $user = User::find($request->id);
+
+            $user->is_verified = $request->value;
 
             if ($user->isDirty()) {
                 $user->save();

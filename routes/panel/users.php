@@ -7,6 +7,7 @@ Route::get('/data', [UsersController::class, 'data'])->name('users.data')->middl
 Route::post('/store', [UsersController::class, 'store'])->name('users.store')->middleware('rbac:pengguna,2');
 Route::patch('/update', [UsersController::class, 'update'])->name('users.update')->middleware('rbac:pengguna,3');
 Route::patch('/switch', [UsersController::class, 'switchStatus'])->name('users.switch')->middleware('rbac:pengguna,3');
+Route::patch('/switch-verified', [UsersController::class, 'switchVerified'])->name('users.switch-verified')->middleware('rbac:pengguna,3');
 Route::delete('/delete', [UsersController::class, 'delete'])->name('users.delete')->middleware('rbac:pengguna,4');
 Route::patch('/update/roles', [UsersController::class, 'updateRole'])->name('users.update.roles')->middleware('rbac:pengguna,3');
 Route::patch('/reset-password', [UsersController::class, 'resetPassword'])->name('users.reset-password')->middleware('rbac:pengguna,3');
