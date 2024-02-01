@@ -19,6 +19,7 @@ class ProfilPemohon extends Model
         'alamat',
         'username',
         'password',
+        'is_verified',
     ];
 
     public function roles()

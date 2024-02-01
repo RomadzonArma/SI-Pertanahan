@@ -23,7 +23,7 @@ class CheckIfVerified
         }
 
         // Check if the user is verified
-        if (!Auth::user()->is_verified) {
+        if (Auth::user()->is_verified!=1) {
             // Redirect them to a specific page or show an error
             Auth::logout();
             return redirect('/login');
