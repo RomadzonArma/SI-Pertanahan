@@ -125,20 +125,36 @@ $(() => {
     })
 
     $('#table-data').on('change', '.switch-verified', function () {
-        var id = $(this).data('id');
-        var value = $(this).val();
-
-        $.post(BASE_URL + 'users/switch-verified', {
-            id,
-            value,
-            _method: 'PATCH'
-        }).done((res) => {
-            showSuccessToastr('sukses', value == '1' ? 'User berhasil diverifikasi' : 'Status verifikasi telah dinonaktifkan');
-            table.ajax.reload();
-        }).fail((res) => {
-            let { status, responseJSON } = res;
-            showErrorToastr('oops', responseJSON.message);
-            console.log(res);
+        let data = table.row($(this).closest('tr')).data();
+        let { id, name } = data;
+        Swal.fire({
+            title: 'Konfirmasi',
+            html: `Anda akan mengubah status verifikasi <b>${name}</b>`,
+            footer: '',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#556ee6',
+            cancelButtonColor: 'grey',
+            confirmButtonText: 'Ubah',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // var id = $(this).data('id');
+                var value = $(this).val();
+        
+                $.post(BASE_URL + 'users/switch-verified', {
+                    id,
+                    value,
+                    _method: 'PATCH'
+                }).done((res) => {
+                    showSuccessToastr('', value == '1' ? 'User berhasil diverifikasi' : 'Status verifikasi telah dinonaktifkan');
+                    table.ajax.reload();
+                }).fail((res) => {
+                    let { status, responseJSON } = res;
+                    showErrorToastr('oops', responseJSON.message);
+                    console.log(res);
+                })
+            } else table.draw();
         })
     })
 
@@ -278,12 +294,18 @@ $(() => {
         }, {
             data: 'is_verified',
             render: (data, type, row) => {
-                return `
-                <div class="custom-control custom-switch mb-3" dir="ltr">
-                    <input type="checkbox" class="custom-control-input switch-verified" id="verified-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
-                    <label class="custom-control-label" for="verified-${row.id}">${data == '1' ? 'Terverifikasi' : 'Tidak Terverifikasi'}</label>
-                </div>
-                `;
+                if(permissions.approve){
+                    return `
+                    <div class="custom-control custom-switch mb-3" dir="ltr">
+                        <input type="checkbox" class="custom-control-input switch-verified" id="verified-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
+                        <label class="custom-control-label" for="verified-${row.id}">${data == '1' ? 'Terverifikasi' : 'Tidak Terverifikasi'}</label>
+                    </div>
+                    `;
+                } else{
+                    return `
+                        <label for="verified-${row.id}">${data == '1' ? 'Terverifikasi' : 'Tidak Terverifikasi'}</label>
+                    `;
+                }
             }
         }, {
             data: 'id',

@@ -109,6 +109,19 @@ class UsersController extends Controller
             }
 
             if ($user->wasChanged()) {
+                $phone = formatPhoneNumberForWhatsApp($user->no_telp);
+                switch ($request->value) {
+                    case '1':
+                        sendMessage($phone, 'Akun yang Anda daftarkan telah diverifikasi');
+                        break;
+                    case '0':
+                        sendMessage($phone, 'Akun Anda telah dinonaktifkan');
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+                
                 return response()->json(['status' => true], 200);
             }
         } catch (\Exception $e) {

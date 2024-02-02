@@ -28,3 +28,18 @@ if (!function_exists('sendMessage')) {
         return $result;
     }
 }
+
+if (!function_exists('formatPhoneNumberForWhatsApp')) {
+    function formatPhoneNumberForWhatsApp($phoneNumber) {
+        // Check if the phone number starts with '0'
+        if (substr($phoneNumber, 0, 1) === '0') {
+            // Remove the leading '0' and add the country code prefix
+            $formattedNumber = '62' . substr($phoneNumber, 1);
+        } else {
+            // If the number doesn't start with '0', assume it's already in the correct format
+            $formattedNumber = $phoneNumber;
+        }
+    
+        return $formattedNumber;
+    }
+}
