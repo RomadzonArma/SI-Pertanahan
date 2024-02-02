@@ -46,6 +46,20 @@ class RegisterPemohonController extends Controller
             $syncData = [$id_role => ['created_at' => now()]];
             $user->roles()->sync($syncData);
 
+            // send WA
+            $phone = formatPhoneNumberForWhatsApp($request->no_telp);
+            $message = "Terima kasih telah mendaftarkan Akun KRK pada Platform KRK Online kami.
+        
+Untuk mengaksesnya silakan Bapak/Ibu log in melalui link ".route('login')."
+Username : {$request->username}
+Password : {$request->password}
+
+Akun Anda belum Aktif, menunggu Aktivasi dari Super Admin.
+Apabila akun belum aktif, dapat konfirmasi lebih lanjut dengan menghubungi Call Center 00000000000 (Japri WA).
+
+DPUPR Kota Tegal";
+            sendMessage($phone, $message);
+
             return response()->json(['status' => true], 200);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);

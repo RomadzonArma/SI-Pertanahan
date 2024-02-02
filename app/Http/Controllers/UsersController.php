@@ -112,7 +112,13 @@ class UsersController extends Controller
                 $phone = formatPhoneNumberForWhatsApp($user->no_telp);
                 switch ($request->value) {
                     case '1':
-                        sendMessage($phone, 'Akun yang Anda daftarkan telah diverifikasi');
+                        $message = "Selamat, akun Anda telah diaktivasi
+
+Untuk mengaksesnya silakan Bapak/Ibu log in melalui link ".route('login').".
+Konfirmasi lebih lanjut dapat menghubungi Call Center 00000000000 (Japri WA).
+
+DPUPR Kota Tegal";
+                        sendMessage($phone, $message);
                         break;
                     case '0':
                         sendMessage($phone, 'Akun Anda telah dinonaktifkan');
