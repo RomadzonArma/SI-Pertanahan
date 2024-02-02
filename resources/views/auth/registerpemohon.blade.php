@@ -28,8 +28,8 @@
                             <div class="row">
                                 <div class="col-7">
                                     <div class="text-primary p-4">
-                                        <h5 class="text-primary">Pendaftaran Akun !</h5>
-                                        <p>Silahkan melengkapi data.</p>
+                                        <h5 class="text-primary">Pendaftaran Akun</h5>
+                                        <p>Silakan melengkapi data.</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">

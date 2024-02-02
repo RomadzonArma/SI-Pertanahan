@@ -124,6 +124,24 @@ $(() => {
         })
     })
 
+    $('#table-data').on('change', '.switch-verified', function () {
+        var id = $(this).data('id');
+        var value = $(this).val();
+
+        $.post(BASE_URL + 'users/switch-verified', {
+            id,
+            value,
+            _method: 'PATCH'
+        }).done((res) => {
+            showSuccessToastr('sukses', value == '1' ? 'User berhasil diverifikasi' : 'Status verifikasi telah dinonaktifkan');
+            table.ajax.reload();
+        }).fail((res) => {
+            let { status, responseJSON } = res;
+            showErrorToastr('oops', responseJSON.message);
+            console.log(res);
+        })
+    })
+
     $('#form-pengguna-update').on('submit', function (e) {
         e.preventDefault();
 
@@ -225,9 +243,9 @@ $(() => {
             type: 'get',
             dataType: 'json'
         },
-        order: [[5, 'desc']],
+        order: [[6, 'desc']],
         columnDefs: [{
-            targets: [0, 4],
+            targets: [0, 5],
             orderable: false,
             searchable: false,
             className: 'text-center align-top'
@@ -238,7 +256,7 @@ $(() => {
             targets: [3],
             className: 'text-center align-top'
         }, {
-            targets: [5],
+            targets: [6],
             visible: false,
         }],
         columns: [{
@@ -254,6 +272,16 @@ $(() => {
                 <div class="custom-control custom-switch mb-3" dir="ltr">
                     <input type="checkbox" class="custom-control-input switch-active" id="aktif-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
                     <label class="custom-control-label" for="aktif-${row.id}">${data == '1' ? 'Aktif' : 'Nonaktif'}</label>
+                </div>
+                `;
+            }
+        }, {
+            data: 'is_verified',
+            render: (data, type, row) => {
+                return `
+                <div class="custom-control custom-switch mb-3" dir="ltr">
+                    <input type="checkbox" class="custom-control-input switch-verified" id="verified-${row.id}" data-id="${row.id}" ${data == '1' ? 'checked' : ''} value="${data == '1' ? 0 : 1}">
+                    <label class="custom-control-label" for="verified-${row.id}">${data == '1' ? 'Terverifikasi' : 'Tidak Terverifikasi'}</label>
                 </div>
                 `;
             }

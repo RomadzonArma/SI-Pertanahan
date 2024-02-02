@@ -34,7 +34,8 @@ class RegisterPemohonController extends Controller
                 'no_telp' => $request->no_telp,
                 'alamat' => $request->alamat,
                 'username' => $request->username,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'is_verified' => 0
             ]);
 
             $id = $profil_pemohon->id;
@@ -42,7 +43,8 @@ class RegisterPemohonController extends Controller
 
             $user = ProfilPemohon::with('roles')->find($id);
             $roles = Role::select('id')->where('is_active', 1)->get();
-            $user->roles()->sync($id_role);
+            $syncData = [$id_role => ['created_at' => now()]];
+            $user->roles()->sync($syncData);
 
             return response()->json(['status' => true], 200);
         } catch (\Exception $e) {
