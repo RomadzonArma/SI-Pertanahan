@@ -23,6 +23,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::get('/tegal-krk/', function () {
+    return redirect()->route('login');
+});
+
 Auth::routes();
 Route::get('/sendWa', [TestingController::class, 'sendWa'])->name('send-wa');
 
