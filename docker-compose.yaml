@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  tegal-krk:
+    image: php7.4-apache-mysqli:latest
+    container_name: tegal-krk
+    ports:
+      - "8082:80"
+    volumes:
+      - /home/phicosdev/projects/tegal-krk-src:/var/www/html
+    restart: always

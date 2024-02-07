@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         if (in_array(env('APP_ENV'), ['production', 'ministry', 'egov'])) {
+            \URL::forceRootUrl(\Config::get('app.url'));
             \URL::forceScheme('https');
         }
     }
