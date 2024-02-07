@@ -67,16 +67,16 @@ $(() => {
             type: "get",
             dataType: "json",
         },
-        order: [[4, "desc"]],
+        order: [[5, "desc"]],
         columnDefs: [
             {
-                targets: [0, 4],
+                targets: [0, 5],
                 orderable: true,
                 searchable: false,
                 className: "text-center align-top",
             },
             {
-                targets: [1, 2],
+                targets: [1, 2, 4],
                 className: "text-left align-top",
                 orderable: false,
                 searchable: true,
@@ -94,6 +94,16 @@ $(() => {
             },
             {
                 data: "nama",
+                render: (data, type, row) => {
+                    const no_regBadge = row.no_reg
+                        ? `<h5><span class="badge badge-secondary">No Registrasi : ${row.no_reg}</span></h5>`
+                        : "";
+                    const surveyBadge =
+                        row.survey == "1"
+                            ? `<h5><span class="badge badge-secondary">Survey : Ada</span></h5>`
+                            : "";
+                    return data + "<br>" + no_regBadge + surveyBadge;
+                },
             },
             {
                 data: "pekerjaan",
@@ -107,8 +117,47 @@ $(() => {
                 },
             },
             {
-                data: "id",
+                data: "nama_status",
                 render: (data, type, row) => {
+                    const statusBadge = row.status
+                        ? `<h5><span class="badge badge-primary">${row.nama_status}</span></h5>`
+                        : "";
+                    const alasanBadge = row.alasan
+                        ? `<span class="badge badge-primary">Alasan: ${row.alasan}</span>`
+                        : "";
+                    return statusBadge + "<br>" + alasanBadge;
+                },
+            },
+            {
+                data: "encrypted_id",
+                render: (data, type, row) => {
+                    const button_ajukan_pemohon = $("<button>", {
+                        class: "btn btn-success",
+                        html: '<i class="bx bx-check-circle btn-ajukan-pemohon"></i>',
+                        "data-id": data,
+                        title: "Ajukan Pemohon",
+                        "data-placement": "top",
+                        "data-toggle": "tooltip",
+                    });
+
+                    const button_ajukan_operator = $("<button>", {
+                        class: "btn btn-warning",
+                        html: '<i class="bx bx-check-circle btn-ajukan-operator"></i>',
+                        "data-id": data,
+                        title: "Ajukan Operator",
+                        "data-placement": "top",
+                        "data-toggle": "tooltip",
+                    });
+
+                    const button_ajukan_lapangan = $("<button>", {
+                        class: "btn btn-secondary",
+                        html: '<i class="bx bx-check-circle btn-ajukan-lapangan"></i>',
+                        "data-id": data,
+                        title: "Ajukan Tim Lapangan",
+                        "data-placement": "top",
+                        "data-toggle": "tooltip",
+                    });
+
                     const button_edit = $("<a>", {
                         class: "btn btn-primary",
                         html: '<i class="bx bx-pencil"></i>',
@@ -133,11 +182,15 @@ $(() => {
                         html: () => {
                             let arr = [];
 
+                            arr.push(button_ajukan_pemohon);
+                            arr.push(button_ajukan_operator);
+                            arr.push(button_ajukan_lapangan);
+
                             if (permissions.update) {
                                 arr.push(button_edit);
                             }
-                            if (permissions.delete) arr.push(button_delete);
 
+                            if (permissions.delete) arr.push(button_delete);
                             return arr;
                         },
                     }).prop("outerHTML");
@@ -149,7 +202,7 @@ $(() => {
     $("#table-data").on("click", ".btn-delete", function () {
         let data = table.row($(this).closest("tr")).data();
 
-        let { id, nama } = data;
+        let { encrypted_id: id, nama } = data;
 
         Swal.fire({
             title: "Anda yakin?",
@@ -179,8 +232,105 @@ $(() => {
         });
     });
 
-    $(".btn-update").on("click", function () {
-        var id;
-        window.location.href = BASE_URL + "pengajuan/create";
+    $("#table-data").on("click", ".btn-ajukan-pemohon", function () {
+        let data = table.row($(this).closest("tr")).data();
+        let { encrypted_id: id } = data;
+
+        $.ajax({
+            url: BASE_URL + "pengajuan/ajukanpemohon",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                id: id,
+            },
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
+            },
+            success: function (data) {
+                swal.close();
+                $("#modal_ajukanpemohon").modal("show");
+                $(".getformpemohon").html(data.html);
+            },
+        });
+    });
+
+    $("#modal_ajukan_pemohon").on("hidden.bs.modal", function () {
+        $(".getformpemohon").html("");
+    });
+
+    $("#table-data").on("click", ".btn-ajukan-operator", function () {
+        let data = table.row($(this).closest("tr")).data();
+        let { encrypted_id: id } = data;
+
+        $.ajax({
+            url: BASE_URL + "pengajuan/ajukanoperator",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                id: id,
+            },
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
+            },
+            success: function (data) {
+                swal.close();
+                $("#modal_ajukanoperator").modal("show");
+                $(".getformoperator").html(data.html);
+            },
+        });
+    });
+
+    $("#modal_ajukan_operator").on("hidden.bs.modal", function () {
+        $(".getformoperator").html("");
+    });
+
+    $("#table-data").on("click", ".btn-ajukan-lapangan", function () {
+        let data = table.row($(this).closest("tr")).data();
+        let { encrypted_id: id } = data;
+
+        $.ajax({
+            url: BASE_URL + "pengajuan/ajukanlapangan",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                id: id,
+            },
+            beforeSend: function () {
+                Swal.fire({
+                    title: "Mohon Tunggu",
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    showConfirmButton: false,
+                    showCancelButton: false,
+                });
+            },
+            success: function (data) {
+                swal.close();
+                $("#modal_ajukanlapangan").modal("show");
+                $(".getformlapangan").html(data.html);
+            },
+        });
+    });
+
+    $("#modal_ajukan_lapangan").on("hidden.bs.modal", function () {
+        $(".getformlapangan").html("");
     });
 });
