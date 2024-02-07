@@ -28,6 +28,7 @@
                                     <th>Nama Lengkap</th>
                                     <th>Pekerjaan</th>
                                     <th>Tanggal Pengajuan</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -35,6 +36,30 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ajukanpemohon" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformpemohon">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ajukanoperator" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformoperator">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ajukanlapangan" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformlapangan">
             </div>
         </div>
     </div>

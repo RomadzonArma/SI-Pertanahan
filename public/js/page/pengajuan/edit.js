@@ -39,7 +39,7 @@ $(() => {
                 swal.close();
                 Swal.fire({
                     title: "Sukses",
-                    text: "Berhasil menyimpan data",
+                    text: "Berhasil mengubah data",
                     icon: "success",
                 });
                 setTimeout(() => {
