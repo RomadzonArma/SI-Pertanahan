@@ -30,7 +30,7 @@
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama Lengkap</label>
                             <div class="col-md-10">
                                 <input class="form-control" type="text" placeholder="Masukkan nama lengkap"
-                                    id="nama" name="nama" value="{{ $user->name }}" readonly>
+                                    id="nama" name="nama" value="{{ $user->name }}">
                             </div>
                         </div>
                         <div class="form-group row mt-3">
@@ -98,9 +98,8 @@
                             <div class="col-md-6">
                                 <select name="selaku" id="selaku" class="form-control select2">
                                     <option value="" selected>Pilih Salah Satu</option>
-                                    <option value="Pengelola">Pengelola</option>
-                                    <option value="Pemilik dari tanah">Pemilik dari tanah</option>
-                                    <option value="Bangunan">Bangunan</option>
+                                    <option value="pemilik">Pemilik tanah / bangunan</option>
+                                    <option value="pengelola">Pengelola tanah / bangunan</option>
                                 </select>
                             </div>
                         </div>

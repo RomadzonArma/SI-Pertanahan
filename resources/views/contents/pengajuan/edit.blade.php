@@ -26,12 +26,11 @@
                     <form id="edit-form" action="{{ route('pengajuan.update') }}" enctype="multipart/form-data" method="POST"
                         autocomplete="off">
                         @csrf
-                        @POST
                         <div class="form-group row mt-3">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama Lengkap</label>
                             <div class="col-md-10">
                                 <input class="form-control" type="text" placeholder="Masukkan nama lengkap"
-                                    id="nama" name="nama" value="{{ $edit->nama }}" readonly>
+                                    id="nama" name="nama" value="{{ $edit->nama }}">
                             </div>
                         </div>
                         <div class="form-group row mt-3">
@@ -100,12 +99,10 @@
                             <div class="col-md-6">
                                 <select name="selaku" id="selaku" class="form-control select2">
                                     <option value="" selected>Pilih Salah Satu</option>
-                                    <option value="Pengelola" {{ $edit->selaku == 'Pengelola' ? 'selected' : '' }}>Pengelola
+                                    <option value="pemilik"
+                                        {{ $edit->selaku == 'pemilik' ? 'selected' : '' }}>Pemilik tanah / bangunan
                                     </option>
-                                    <option value="Pemilik dari tanah"
-                                        {{ $edit->selaku == 'Pemilik dari tanah' ? 'selected' : '' }}>Pemilik dari tanah
-                                    </option>
-                                    <option value="Bangunan" {{ $edit->selaku == 'Bangunan' ? 'selected' : '' }}>Bangunan
+                                    <option value="pengelola" {{ $edit->selaku == 'pengelola' ? 'selected' : '' }}>Pengelola tanah / bangunan
                                     </option>
                                 </select>
                             </div>
