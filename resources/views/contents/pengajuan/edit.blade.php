@@ -26,6 +26,9 @@
                     <form id="edit-form" action="{{ route('pengajuan.update') }}" enctype="multipart/form-data" method="POST"
                         autocomplete="off">
                         @csrf
+                        <input class="form-control" type="hidden" id="id"
+                            name="id"value="{{ encrypt($edit->id) }}">
+                        <input class="form-control" type="hidden" id="status" name="status"value="{{ $edit->status }}">
                         <div class="form-group row mt-3">
                             <label for="example-text-input" class="col-md-2 col-form-label">Nama Lengkap</label>
                             <div class="col-md-10">
@@ -125,6 +128,22 @@
                                     <label class="custom-file-label" for="customFile">Pilih Dokumen</label>
                                 </div>
                             </div>
+                            @if ($edit->bukti_kepemilikan_tanah_file)
+                                <div class="col-md-2 mt-3">
+                                    <div class="btn-group">
+                                        <a target="_blank"
+                                            href="{{ asset('storage' . $edit->bukti_kepemilikan_tanah_path) }}"
+                                            class="btn btn-success"><i class="fa fa-file"></i> Dok</a>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="col-md-2 mt-3">
+                                    <div class="btn-group">
+                                        <a href="javascript:void(0);" class="btn btn-danger"><i class="fa fa-file"></i>
+                                            Belum Ada</a>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         <div class="form-group row mt-3">
                             <div class="col-md-2">
