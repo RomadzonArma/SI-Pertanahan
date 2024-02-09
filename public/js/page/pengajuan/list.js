@@ -131,7 +131,6 @@ $(() => {
             {
                 data: "encrypted_id",
                 render: (data, type, row) => {
-                    console.log(role_id);
                     const button_ajukan_pemohon = $("<button>", {
                         class: "btn btn-success",
                         html: '<i class="bx bx-check-circle btn-ajukan-pemohon"></i>',
@@ -182,16 +181,28 @@ $(() => {
                         class: "btn-group",
                         html: () => {
                             let arr = [];
-
-                            arr.push(button_ajukan_pemohon);
-                            arr.push(button_ajukan_operator);
-                            arr.push(button_ajukan_lapangan);
-
-                            if (permissions.update) {
-                                arr.push(button_edit);
+                            console.log(role_id);
+                            if (role_id == "1") {
+                                arr.push(button_ajukan_pemohon);
+                                arr.push(button_ajukan_operator);
+                                arr.push(button_ajukan_lapangan);
+                                if (permissions.update) arr.push(button_edit);
+                                if (permissions.delete) arr.push(button_delete);
+                            } else if (role_id == "7") {
+                                arr.push(button_ajukan_pemohon);
+                                if (permissions.update) arr.push(button_edit);
+                                if (permissions.delete) arr.push(button_delete);
+                            } else if (role_id == "6") {
+                                arr.push(button_ajukan_operator);
+                                if (permissions.update) arr.push(button_edit);
+                                if (permissions.delete) arr.push(button_delete);
+                            } else if (role_id == "5") {
+                                arr.push(button_ajukan_lapangan);
+                                if (permissions.update) arr.push(button_edit);
+                                if (permissions.delete) arr.push(button_delete);
+                            } else {
                             }
 
-                            if (permissions.delete) arr.push(button_delete);
                             return arr;
                         },
                     }).prop("outerHTML");

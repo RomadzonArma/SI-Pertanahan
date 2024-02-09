@@ -19,7 +19,7 @@ class PengajuanController extends Controller
     {
 
         $user = $request->session()->get('role_id');
-        // dd($user);
+
         return view('contents.pengajuan.list', [
             'title' => 'Pengajuan',
             'role_id' => $user,
