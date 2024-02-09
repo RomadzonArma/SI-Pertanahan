@@ -66,5 +66,8 @@
 @endsection
 
 @push('scripts')
+    <script>
+        window.role_id = "{{ $role_id }}";
+    </script>
     <script src="{{ asset('js/page/pengajuan/list.js?q=' . Str::random(5)) }}"></script>
 @endpush

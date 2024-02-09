@@ -131,6 +131,7 @@ $(() => {
             {
                 data: "encrypted_id",
                 render: (data, type, row) => {
+                    console.log(role_id);
                     const button_ajukan_pemohon = $("<button>", {
                         class: "btn btn-success",
                         html: '<i class="bx bx-check-circle btn-ajukan-pemohon"></i>',

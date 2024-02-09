@@ -22,6 +22,7 @@ class PengajuanController extends Controller
         // dd($user);
         return view('contents.pengajuan.list', [
             'title' => 'Pengajuan',
+            'role_id' => $user,
         ]);
     }
 
