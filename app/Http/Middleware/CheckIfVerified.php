@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,7 @@ class CheckIfVerified
         }
 
         // Check if the user is verified
-        if (Auth::user()->is_verified!=1) {
+        if (Auth::user()->is_verified != 1) {
             // Redirect them to a specific page or show an error
             Auth::logout();
             return redirect('/login');

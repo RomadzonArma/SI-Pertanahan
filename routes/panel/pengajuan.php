@@ -15,4 +15,14 @@ Route::post('/send_ajukan_pemohon', [PengajuanController::class, 'send_ajukan_pe
 Route::post('/ajukanoperator', [PengajuanController::class, 'ajukanoperator'])->name('pengajuan.ajukanoperator')->middleware('rbac:pengajuan');
 Route::post('/send_ajukan_operator', [PengajuanController::class, 'send_ajukan_operator'])->name('pengajuan.send_ajukan_operator')->middleware('rbac:pengajuan,6');
 Route::post('/ajukanlapangan', [PengajuanController::class, 'ajukanlapangan'])->name('pengajuan.ajukanlapangan')->middleware('rbac:pengajuan');
-Route::post('/send_ajukan_tidak_survey', [PengajuanController::class, 'send_ajukan_tidak_survey'])->name('pengajuan.send_ajukan_tidak_survey')->middleware('rbac:pengajuan,6');
+Route::post('/send_ajukan_survey', [PengajuanController::class, 'send_ajukan_survey'])->name('pengajuan.send_ajukan_survey')->middleware('rbac:pengajuan,6');
+// Route::post('/send_ajukan_tidak_survey', [PengajuanController::class, 'send_ajukan_tidak_survey'])->name('pengajuan.send_ajukan_tidak_survey')->middleware('rbac:pengajuan,6');
+Route::post('/operator_send_pimpinan', [PengajuanController::class, 'operator_send_pimpinan'])->name('pengajuan.operator_send_pimpinan')->middleware('rbac:pengajuan,6');
+Route::post('/ajukansubkoor', [PengajuanController::class, 'ajukansubkoor'])->name('pengajuan.ajukansubkoor')->middleware('rbac:pengajuan');
+Route::post('/send_ajukan_subkoor', [PengajuanController::class, 'send_ajukan_subkoor'])->name('pengajuan.send_ajukan_subkoor')->middleware('rbac:pengajuan,6');
+Route::post('/ajukankabid', [PengajuanController::class, 'ajukankabid'])->name('pengajuan.ajukankabid')->middleware('rbac:pengajuan');
+Route::post('/send_ajukan_kabid', [PengajuanController::class, 'send_ajukan_kabid'])->name('pengajuan.send_ajukan_kabid')->middleware('rbac:pengajuan,6');
+Route::post('/ajukanselesai', [PengajuanController::class, 'ajukanselesai'])->name('pengajuan.ajukankadin')->middleware('rbac:pengajuan');
+Route::post('/send_ajukan_kadin', [PengajuanController::class, 'send_ajukan_kadin'])->name('pengajuan.send_ajukan_kadin')->middleware('rbac:pengajuan,6');
+Route::post('/ajukanselesai', [PengajuanController::class, 'ajukanselesai'])->name('pengajuan.ajukanselesai')->middleware('rbac:pengajuan');
+Route::post('/send_ajukan_selesai', [PengajuanController::class, 'send_ajukan_selesai'])->name('pengajuan.send_ajukan_selesai')->middleware('rbac:pengajuan,6');

@@ -63,6 +63,38 @@
             </div>
         </div>
     </div>
+
+    <div id="modal_ajukansubkoor" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformsubkoor">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ajukankabid" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformkabid">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ajukankadin" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformkadin">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_ajukanselesai" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel"aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content getformselesai">
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
