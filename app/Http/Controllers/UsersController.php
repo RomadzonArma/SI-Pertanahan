@@ -24,7 +24,7 @@ class UsersController extends Controller
 
     public function data(Request $request)
     {
-        $list = User::select(DB::raw('id, name, username, is_active, is_verified, created_at'))->with('roles');
+        $list = User::select(DB::raw('id, name, username, pekerjaan, email, no_telp, alamat, is_active, is_verified, created_at'))->with('roles');
 
         return DataTables::of($list)
             ->addIndexColumn()
@@ -35,6 +35,10 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'pekerjaan' => 'required',
+            'email' => 'required|unique:users,email',
+            'no_telp' => 'required',
+            'alamat' => 'required',
             'username' => 'required|unique:users,username',
             'password' => 'required|min:5',
             'confirmation_password' => 'required|same:password'
@@ -43,6 +47,11 @@ class UsersController extends Controller
         try {
             $user = User::create([
                 'name' => $request->name,
+                'pekerjaan' => $request->pekerjaan,
+                'email' => $request->email,
+                'no_telp' => $request->no_telp,
+                'alamat' => $request->alamat,
+                'is_verified' => 1,
                 'username' => $request->username,
                 'password' => Hash::make($request->password)
             ]);
@@ -57,6 +66,10 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'pekerjaan' => 'required',
+            'email' => ['required', Rule::unique('users', 'email')->ignore($request->id)],
+            'no_telp' => 'required',
+            'alamat' => 'required',
             'username' => ['required', Rule::unique('users', 'username')->ignore($request->id)]
         ]);
 
@@ -65,6 +78,10 @@ class UsersController extends Controller
 
             $user->name = $request->name;
             $user->username = $request->username;
+            $user->pekerjaan = $request->pekerjaan;
+            $user->email = $request->email;
+            $user->no_telp = $request->no_telp;
+            $user->alamat = $request->alamat;
 
             if ($user->isDirty()) {
                 $user->save();

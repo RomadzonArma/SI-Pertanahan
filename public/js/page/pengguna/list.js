@@ -187,9 +187,14 @@ $(() => {
                 if (status == 422) {
                     generateErrorMessage(responseJSON, true);
                     return false;
+                } else if(status == 200){
+                    $(this)[0].reset();
+                    clearErrorMessage();
+                    table.ajax.reload();
+                    $('#modal-pengguna-update').modal('hide');
                 }
 
-                showErrorToastr('oops', responseJSON.msg)
+                if(typeof responseJSON!='undefined') showErrorToastr('oops', responseJSON.msg)
             }
         })
     })

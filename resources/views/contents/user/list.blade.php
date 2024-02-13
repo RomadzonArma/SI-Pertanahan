@@ -45,7 +45,7 @@ $plugins = ['datatable', 'swal', 'select2'];
 <div id="modal-pengguna" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-penggunaLabel"
     aria-hidden="true">
     <form action="{{ route('users.store') }}" method="post" id="form-pengguna" autocomplete="off">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title mt-0" id="modal-penggunaLabel">Form Pengguna</h5>
@@ -65,6 +65,26 @@ $plugins = ['datatable', 'swal', 'select2'];
                         <input type="text" name="name" id="name" class="form-control"
                             placeholder="Masukkan Nama Lengkap" required>
                         <div id="error-name"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <input type="text" name="pekerjaan" id="pekerjaan" class="form-control" placeholder="Masukkan Pekerjaan" required>
+                        <div id="error-pekerjaan"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan Email" required>
+                        <div id="error-email"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_telp">No Telp / HP</label>
+                        <input type="number" name="no_telp" id="no_telp" class="form-control" placeholder="Masukkan No Telp / HP" required>
+                        <div id="error-no_telp"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea type="number" name="alamat" id="alamat" class="form-control" placeholder="Masukkan Alamat" required></textarea>
+                        <div id="error-alamat"></div>
                     </div>
                     <div class="form-group">
                         <label for="password">Kata Sandi</label>
@@ -94,7 +114,7 @@ $plugins = ['datatable', 'swal', 'select2'];
     <form action="{{ route('users.update') }}" method="post" id="form-pengguna-update" autocomplete="off">
         @method('PATCH')
         <input type="hidden" name="id" id="update-id">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title mt-0" id="modal-pengguna-updateLabel">Form Pengguna</h5>
@@ -114,6 +134,26 @@ $plugins = ['datatable', 'swal', 'select2'];
                         <input type="text" name="name" id="update-name" class="form-control"
                             placeholder="Masukkan Nama Lengkap" required>
                         <div id="error-update-name"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-pekerjaan">Pekerjaan</label>
+                        <input type="text" name="pekerjaan" id="update-pekerjaan" class="form-control" placeholder="Masukkan Pekerjaan" required>
+                        <div id="error-update-pekerjaan"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-email">Email</label>
+                        <input type="email" name="email" id="update-email" class="form-control" placeholder="Masukkan Email" required>
+                        <div id="error-update-email"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-no_telp">No Telp / HP</label>
+                        <input type="number" name="no_telp" id="update-no_telp" class="form-control" placeholder="Masukkan No Telp / HP" required>
+                        <div id="error-update-no_telp"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-alamat">Alamat</label>
+                        <textarea type="number" name="alamat" id="update-alamat" class="form-control" placeholder="Masukkan Alamat" required></textarea>
+                        <div id="error-update-alamat"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
