@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\TestingController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\BerandaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,11 +19,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::get('/', [BerandaController::class, 'index'])->name('/');
 
-Route::get('/tegal-krk/', function () {
+Route::get('/login', function () {
     return redirect()->route('login');
 });
 
@@ -58,6 +56,6 @@ Route::middleware(['auth', 'is_verified'])->group(function () {
 // });
 
 
-Route::get('/test-a', function () {
-    return Hash::make('eskelapa');
-});
+// Route::get('/test-a', function () {
+//     return Hash::make('eskelapa');
+// });

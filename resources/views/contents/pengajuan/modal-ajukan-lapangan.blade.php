@@ -93,7 +93,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-sm-12">
-            <form id="form-tidak-survey" action="{{ route('pengajuan.send_ajukan_tidak_survey') }}" method="post"
+            <form id="form-survey" action="{{ route('pengajuan.send_ajukan_survey') }}" method="post"
                 enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="{{ encrypt($edit->id) }}"
                     class="form-control">
@@ -142,13 +142,85 @@
                         <div id="error-surat_pernyataan_gsb"></div>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="text" class="col-form-label">Lokasi</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div style="position: absolute; top: 10px ; right: 25px ;   z-index: 99999999999">
+                            <div class="text-right" style="margin-bottom: 5px;">
+                                <button type="button" id="btn-lokasi" class="btn btn-danger glow"
+                                    style="width: 150px;">
+                                    <i class="bx bx-map-pin"></i> Lokasi Anda </button>
+                            </div>
+                            <div class="text-right">
+                                <button type="button" id="btn-reload" class="btn btn-success glow"
+                                    style="width: 150px;">
+                                    <i class="bx bx-sync"></i> Reload </button>
+                            </div>
+                        </div>
+                        <div id="chart-map" style="height: 500px; width: 100%; border: solid grey 2px;"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="text" class="col-form-label">Latitude</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" name="latitude_lapangan" class="form-control" id="latitude" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-9">
+                        <div id="error-latitude"></div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="text" class="col-form-label">Longitude</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" name="longitude_lapangan" class="form-control" id="longitude"
+                            readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-9">
+                        <div id="error-logitude"></div>
+                    </div>
+                </div>
             </form>
+            {{-- <form id="form-tidak-survey" action="{{ route('pengajuan.send_ajukan_tidak_survey') }}" method="post"
+                enctype="multipart/form-data">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="text" class="col-form-label">Lokasi</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div style="position: absolute; top: 10px ; right: 25px ;   z-index: 99999999999">
+                            <div class="text-right" style="margin-bottom: 5px;">
+                                <button type="button" id="btn-lokasi" class="btn btn-danger glow"
+                                    style="width: 150px;">
+                                    <i class="bx bx-map-pin"></i> Lokasi Anda </button>
+                            </div>
+                            <div class="text-right">
+                                <button type="button" id="btn-reload" class="btn btn-success glow"
+                                    style="width: 150px;">
+                                    <i class="bx bx-sync"></i> Reload </button>
+                            </div>
+                        </div>
+                        <div id="chart-map" style="height: 500px; width: 100%; border: solid grey 2px;"></div>
+                    </div>
+                </div>
+            </form> --}}
         </div>
     </div>
 </div>
 
 <div class="modal-footer">
-    <button type="submit" form="form-tidak-survey" class="btn btn-primary">Survey Telah Dilakukan</button>
+    <button type="submit" form="form-survey" class="btn btn-primary">Survey Telah Dilakukan</button>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 </div>
 
@@ -165,7 +237,7 @@
             .html(fileName);
     });
 
-    $('#form-tidak-survey').submit(function(e) {
+    $('#form-survey').submit(function(e) {
         e.preventDefault();
         let data = new FormData(this);
         let url = $(this).attr('action');
@@ -216,4 +288,148 @@
             });
         });
     });
+</script>
+
+<script>
+    var map, geoJson, marker;
+    var active_basemap = 'osm';
+    var polygonsWithCenters = L.layerGroup();
+
+    map = L.map('chart-map', {
+        zoomControl: true
+    }).setView([-7.57110295267244, 110.82622065004949], 13);
+    map.scrollWheelZoom.disable();
+
+    var basemap = {
+        osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map),
+        google_roadmap: L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }),
+        google_satellite: L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }),
+        google_hybrid: L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }),
+        google_terrain: L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }),
+        esri_world_imagery: L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 17
+            }),
+        esri_world_street_map: L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'),
+        esri_world_topo_map: L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'),
+        peta_rbi_opensource: L.tileLayer.wms('http://palapa.big.go.id:8080/geoserver/gwc/service/wms', {
+            maxZoom: 20,
+            layers: "basemap_rbi:basemap",
+            format: "image/png",
+            attribution: 'Badan Informasi Geospasial'
+        })
+    }
+
+    L.control.layers(basemap, null, {
+        position: 'topleft'
+    }).addTo(map);
+    map.zoomControl.setPosition('topleft');
+
+    L.Control.Scale.include({
+        _originalUpdateScale: L.Control.Scale.prototype._updateScale,
+        _updateScale: function(scale, text, ratio) {
+            this._originalUpdateScale.call(this, scale, text, ratio);
+            this._map.fire('scaleupdate', {
+                pixels: scale.style.width,
+                distance: text
+            });
+        }
+    });
+
+    var scale = L.control.scale({
+        position: 'bottomright',
+        imperial: false,
+    });
+
+    scale.addTo(map);
+
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 1000);
+
+    var circles;
+    var marker_top;
+
+    function onLocationFound(e) {
+        var radius = e.accuracy / 2;
+        marker_top = L.marker(e.latlng);
+        marker_top.addTo(map);
+        circles = L.circle(e.latlng, radius);
+        circles.addTo(map);
+        //marker_top.bindPopup("You are within " + radius + " ==== " +e.latlng + " meters from this point").openPopup();
+        $('#latitude').val(e.latlng.lat);
+        $('#longitude').val(e.latlng.lng);
+    }
+
+    var theMarker = {};
+    map.on('click', function(e) {
+        if (marker_top != undefined) {
+            kosongkanLokasi();
+        }
+        console.log(marker_top);
+        if (theMarker != undefined) {
+            map.removeLayer(theMarker);
+            $('#latitude').val(e.latlng.lat);
+            $('#longitude').val(e.latlng.lng);
+        };
+        //Add a marker to show where you clicked.
+        theMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+    });
+
+    function onLocationError(e) {
+        alert(e.message);
+    }
+
+    $('#btn-lokasi').on('click', function(e) {
+        if (theMarker != undefined) {
+            //kosongkanMarker();
+        }
+        if (marker_top != undefined) {
+            kosongkanLokasi();
+        }
+        reloadLokasi();
+    });
+
+    $('#btn-reload').on('click', function(e) {
+        if (marker_top != undefined) {
+            kosongkanLokasi();
+        }
+        $('#latitude').val(null).trigger('change');
+        $('#longitude').val(null).trigger('change');
+    });
+
+    function kosongkanLokasi() {
+        map.removeLayer(marker_top);
+        map.removeLayer(circles);
+    }
+
+    function reloadLokasi() {
+        kosongkanMarker();
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+        map.locate({
+            setView: true,
+            maxZoom: 18
+        });
+    }
+
+    function kosongkanMarker() {
+        map.removeLayer(theMarker);
+    }
 </script>

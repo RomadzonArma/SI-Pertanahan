@@ -129,6 +129,12 @@ class PengajuanController extends Controller
             $query->where('a.created_by', '=', $user_id->id);
         } elseif ($user == '5') {
             $query->whereNotIn('a.status', ['100', '200', '300', '400']);
+        } elseif ($user == '4') {
+            $query->whereNotIn('a.status', ['100', '200', '300', '400', '500', '600']);
+        } elseif ($user == '3') {
+            $query->whereNotIn('a.status', ['100', '200', '300', '400', '500', '600', '700']);
+        } elseif ($user == '2') {
+            $query->whereNotIn('a.status', ['100', '200', '300', '400', '500', '600', '700', '800', '900']);
         }
 
         // Eksekusi query dan dapatkan hasil
@@ -150,7 +156,7 @@ class PengajuanController extends Controller
         $user = Auth::user();
 
         try {
-            $pengajuan = Pengajuan::find($request->id);
+            $pengajuan = Pengajuan::find(decrypt($request->id));
 
             $pengajuan->delete();
 
@@ -383,7 +389,7 @@ class PengajuanController extends Controller
         return response()->json(['html' => $html]);
     }
 
-    public function send_ajukan_tidak_survey(Request $request)
+    public function send_ajukan_survey(Request $request)
     {
         $user = Auth::user();
         $id = decrypt($request->id);
@@ -406,6 +412,8 @@ class PengajuanController extends Controller
             } else {
                 $data = Pengajuan::findOrFail($id);
                 $data->mengukur = $request->mengukur;
+                $data->latitude_lapangan = $request->latitude_lapangan;
+                $data->longitude_lapangan = $request->longitude_lapangan;
                 $data->status = "600";
 
                 $dok = null;
@@ -429,6 +437,283 @@ class PengajuanController extends Controller
                     $data->surat_pernyataan_gsb_path = '/pengajuan/surat_pernyataan_gsb/' . $dok;
                 }
 
+                $data->save();
+            }
+
+            DB::commit();
+
+            return response()->json(['status' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function send_ajukan_tidak_survey(Request $request)
+    {
+        $user = Auth::user();
+        $id = decrypt($request->id);
+
+        try {
+            DB::beginTransaction();
+
+            $validator = Validator::make($request->all(), [
+                'id'              => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->getMessageBag()->all()
+                ], 200);
+            } else {
+                $data = Pengajuan::findOrFail($id);
+
+                $data->latitude_lapangan = $request->latitude_lapangan;
+                $data->longitude_lapangan = $request->longitude_lapangan;
+                $data->status = "600";
+
+                $data->save();
+            }
+
+            DB::commit();
+
+            return response()->json(['status' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function operator_send_pimpinan(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $data = Pengajuan::findOrFail(decrypt($request->id));
+
+            $data->status = "700";
+            $data->save();
+
+            DB::commit();
+
+            return response()->json(['status' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function ajukansubkoor(Request $request)
+    {
+        $id = decrypt($request->post('id'));
+
+        $edit = Pengajuan::leftJoin('ref_status_pengajuan', 'ref_status_pengajuan.kode', '=', 'pengajuan.status')
+            ->where('pengajuan.id', '=', $id)
+            ->select('pengajuan.*', 'ref_status_pengajuan.nama as nama_status') // Sesuaikan dengan kolom yang ingin Anda ambil
+            ->first();
+
+        if (!$edit) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+
+        $html = View::make('contents.pengajuan.modal-ajukan-subkoor', [
+            'title' => 'Detail Pengajuan Permohonan',
+            'edit'  => $edit
+        ])->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function send_ajukan_subkoor(Request $request)
+    {
+        $user = Auth::user();
+        $id = decrypt($request->id);
+
+        try {
+            DB::beginTransaction();
+
+            $validator = Validator::make($request->all(), [
+                'id'      => 'required',
+                'status'  => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->getMessageBag()->all()
+                ], 200);
+            } else {
+                $data = Pengajuan::findOrFail($id);
+                $data->status = $request->status;
+                $data->alasan = $request->alasan;
+                $data->save();
+            }
+
+            DB::commit();
+
+            return response()->json(['status' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function ajukankabid(Request $request)
+    {
+        $id = decrypt($request->post('id'));
+
+        $edit = Pengajuan::leftJoin('ref_status_pengajuan', 'ref_status_pengajuan.kode', '=', 'pengajuan.status')
+            ->where('pengajuan.id', '=', $id)
+            ->select('pengajuan.*', 'ref_status_pengajuan.nama as nama_status') // Sesuaikan dengan kolom yang ingin Anda ambil
+            ->first();
+
+        if (!$edit) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+
+        $html = View::make('contents.pengajuan.modal-ajukan-kabid', [
+            'title' => 'Detail Pengajuan Permohonan',
+            'edit'  => $edit
+        ])->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function send_ajukan_kabid(Request $request)
+    {
+        $user = Auth::user();
+        $id = decrypt($request->id);
+
+        try {
+            DB::beginTransaction();
+
+            $validator = Validator::make($request->all(), [
+                'id'      => 'required',
+                'status'  => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->getMessageBag()->all()
+                ], 200);
+            } else {
+                $data = Pengajuan::findOrFail($id);
+                $data->status = $request->status;
+                $data->alasan = $request->alasan;
+                $data->save();
+            }
+
+            DB::commit();
+
+            return response()->json(['status' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function ajukankadin(Request $request)
+    {
+        $id = decrypt($request->post('id'));
+
+        $edit = Pengajuan::leftJoin('ref_status_pengajuan', 'ref_status_pengajuan.kode', '=', 'pengajuan.status')
+            ->where('pengajuan.id', '=', $id)
+            ->select('pengajuan.*', 'ref_status_pengajuan.nama as nama_status') // Sesuaikan dengan kolom yang ingin Anda ambil
+            ->first();
+
+        if (!$edit) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+
+        $html = View::make('contents.pengajuan.modal-ajukan-kadin', [
+            'title' => 'Detail Pengajuan Permohonan',
+            'edit'  => $edit
+        ])->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function send_ajukan_kadin(Request $request)
+    {
+        $user = Auth::user();
+        $id = decrypt($request->id);
+
+        try {
+            DB::beginTransaction();
+
+            $validator = Validator::make($request->all(), [
+                'id'      => 'required',
+                'status'  => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->getMessageBag()->all()
+                ], 200);
+            } else {
+                $data = Pengajuan::findOrFail($id);
+                $data->status = $request->status;
+                $data->alasan = $request->alasan;
+                $data->save();
+            }
+
+            DB::commit();
+
+            return response()->json(['status' => true], 200);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function ajukanselesai(Request $request)
+    {
+        $id = decrypt($request->post('id'));
+
+        $edit = Pengajuan::leftJoin('ref_status_pengajuan', 'ref_status_pengajuan.kode', '=', 'pengajuan.status')
+            ->where('pengajuan.id', '=', $id)
+            ->select('pengajuan.*', 'ref_status_pengajuan.nama as nama_status') // Sesuaikan dengan kolom yang ingin Anda ambil
+            ->first();
+
+        if (!$edit) {
+            return response()->json(['error' => 'Data tidak ditemukan'], 404);
+        }
+
+        $html = View::make('contents.pengajuan.modal-ajukan-selesai', [
+            'title' => 'Detail Pengajuan Permohonan',
+            'edit'  => $edit
+        ])->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function send_ajukan_selesai(Request $request)
+    {
+        $user = Auth::user();
+        $id = decrypt($request->id);
+
+        try {
+            DB::beginTransaction();
+
+            $validator = Validator::make($request->all(), [
+                'id'      => 'required',
+                'status'  => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'errors' => $validator->getMessageBag()->all()
+                ], 200);
+            } else {
+                $data = Pengajuan::findOrFail($id);
+                $data->status = $request->status;
+                $data->alasan = '';
+                $data->no_krk = $request->no_krk;
+                $data->tgl_disahkan_krk = $request->tgl_disahkan_krk;
                 $data->save();
             }
 
