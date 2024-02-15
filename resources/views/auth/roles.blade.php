@@ -9,7 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/logo_kota_tegal.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-kota-surakarta.png') }}">
 
     <!-- Bootstrap Css -->
     <link href="{{ config('app.theme') }}assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet"

@@ -134,7 +134,7 @@ class UsersController extends Controller
 Untuk mengaksesnya silakan Bapak/Ibu log in melalui link ".route('login').".
 Konfirmasi lebih lanjut dapat menghubungi Call Center 00000000000 (Japri WA).
 
-DPUPR Kota Tegal";
+Disperumkimtan Surakarta";
                         sendMessage($phone, $message);
                         break;
                     case '0':

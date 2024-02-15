@@ -14,7 +14,7 @@
     {{--
     <meta content="{{ Route::url() }}" name="current_url"> --}}
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('img/logo_kota_tegal.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-kota-surakarta.png') }}">
 
     @include('layouts.component._style')
 

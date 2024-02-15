@@ -24,7 +24,7 @@
                         <p><strong> Rencana Kota (KRK) </strong>adalah Peta yang di lengkapi dengan keterangan
                             secara rinci mengenai pemanfaatan suatu persil.</p>
                         <p><strong> Pelayanan Penggantian Cetak Peta </strong> adalah jasa pelayanan yang diberikan
-                            oleh Dinas Penataan Ruang berupa pembuatan Keterangan Rencana Kota dan Peta Keterangan
+                            oleh Dinas Penataan Ruang berupa pembuatan Sistem Pertanahan dan Peta Keterangan
                             Rencana Kota.</p>
                     </div>
                 </div>

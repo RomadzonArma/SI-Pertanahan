@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'Kredensial yang anda masukkan tidak terdaftar dalam database kami.',
-    'throttle' => 'Terlalu banyak percobaan masuk, silahkan coba lagi dalam :seconds detik lagi.',
+    'throttle' => 'Terlalu banyak percobaan masuk, silakan coba lagi dalam :seconds detik lagi.',
     'login-title' => 'Laravel Skote',
     'login-mssg' => 'Harap masuk untuk melanjutkan',
     'login-button' => 'Masuk',

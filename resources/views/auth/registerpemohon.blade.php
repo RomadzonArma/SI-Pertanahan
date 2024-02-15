@@ -3,11 +3,11 @@
 
 <head>
     {{-- <meta charset="utf-8" />
-    <title>Keterangan Rencana Kota - Tegal</title>
+    <title>Sistem Pertanahan - Surakarta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Skote" name="description" />
     <meta content="alief" name="author" />
-    <link rel="shortcut icon" href="{{ asset('img/logo_kota_tegal.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-kota-surakarta.png') }}">
     <link href="{{ config('app.theme') }}assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet"
         type="text/css" />
     <link href="{{ config('app.theme') }}assets/css/icons.min.css" rel="stylesheet" type="text/css" />
@@ -20,12 +20,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Peta yang di lengkapi dengan keterangan secara rinci mengenai pemanfaatan suatu persil">
-    <meta name="keywords" content="tegal, peta, krk, kota tegal, kabupaten tegal, krk kota tegal">
+    <meta name="keywords" content="tegal, peta, krk, Kota Surakarta, kabupaten tegal, Sistem Pertanahan">
     <meta name="author" content="phicos">
-    <title>Registrasi | KRK Kota Tegal</title>
+    <title>Registrasi | Sistem Pertanahan</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('front/assets/img/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-kota-surakarta.png') }}">
     <!-- css -->
     <link rel="stylesheet" href="{{ asset('front/assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('front/assets/css/style.css') }}">
@@ -44,9 +44,9 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8 col-md-8">
                                 <img class="card-title w-10 mx-auto d-block mb-3"
-                                    src="{{ asset('front/assets/img/favicon.png') }}">
+                                    src="{{ asset('img/logo-kota-surakarta.png') }}">
                                 <h3 class="display-5 mb-2 text-center">Registrasi</h3>
-                                <p class="lead fs-14 lh-sm mx-auto mb-5 desc-500 text-center">Silahkan Melengkapi Data
+                                <p class="lead fs-14 lh-sm mx-auto mb-5 desc-500 text-center">Silakan Melengkapi Data
                                     Terlebih Dahulu</p>
                                 <form class="login-form mt-4 p-4" id="form-register"
                                     action="{{ route('store-register') }}" enctype="multipart/form-data"
@@ -173,8 +173,8 @@
                                 <div class="img-login d-none d-md-block p-3"
                                     style="background: linear-gradient(180deg, rgb(42 59 140 / 70%) 50%, rgb(37 52 129 / 45%) 100%), url({{ asset('front/assets/img/bg/taman-pancasila.jpeg') }})">
                                     <h2 class="display-1 ls-krk-12 title mb-2 text-center">KRK</h2>
-                                    <h3 class="display-5 title mb-3 text-center">(Keterangan Rencana Kota) <br>Kota
-                                        Tegal</h3>
+                                    <h3 class="display-5 title mb-3 text-center">(Sistem Pertanahan) <br>Kota
+                                        Surakarta</h3>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +284,7 @@
                         <p class="mb-0">©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Keterangan Rencana Kota - Tegal
+                            </script> Sistem Pertanahan - Surakarta
                         </p>
                     </div>
                 </div>

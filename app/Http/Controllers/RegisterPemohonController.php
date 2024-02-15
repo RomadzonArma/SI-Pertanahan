@@ -57,7 +57,7 @@ Password : {$request->password}
 Akun Anda belum Aktif, menunggu Aktivasi dari Super Admin.
 Apabila akun belum aktif, dapat konfirmasi lebih lanjut dengan menghubungi Call Center 00000000000 (Japri WA).
 
-DPUPR Kota Tegal";
+Disperumkimtan Surakarta";
             sendMessage($phone, $message);
 
             return response()->json(['status' => true], 200);

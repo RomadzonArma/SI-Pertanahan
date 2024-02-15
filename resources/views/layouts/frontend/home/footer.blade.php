@@ -4,12 +4,12 @@
             <div class="col-lg-5">
                 <div class="footer-widget">
                     <div class="logo">
-                        <a href="index.html">
-                            <img src="{{ asset('front/assets/img/logo-krk-kota-tegal-light.png') }}" alt="logo-krk-tegal">
+                        <a href="javascript:;">
+                            <img src="{{ asset('img/logo-kota-surakarta.png') }}" alt="logo-krk-tegal" style="height: 60px;">
                         </a>
                     </div>
 
-                    <p class="description mt-5 desc-200">Keterangan Rencana Kota (KRK) adalah Peta yang di lengkapi
+                    <p class="description mt-5 desc-200">Sistem Pertanahan (KRK) adalah Peta yang di lengkapi
                         dengan keterangan secara rinci mengenai pemanfaatan suatu persil.
                     </p>
 
@@ -27,8 +27,8 @@
                 <div class="widget">
                     <h4 class="widget-title mb-3 title">Link Terkait</h4>
                     <ul class="list-unstyled text-reset mb-0">
-                        <li class="desc-200"><a href="#">Website DPUPR Kota Tegal</a></li>
-                        <li class="desc-200"><a href="#">Website Kota Tegal</a></li>
+                        <li class="desc-200"><a href="#">Website Disperumkimtan Surakarta</a></li>
+                        <li class="desc-200"><a href="#">Website Kota Surakarta</a></li>
                     </ul>
                 </div>
                 <!-- /.widget -->
@@ -54,7 +54,7 @@
             <p class="mb-2 mb-lg-0 desc-300">©
                 <script>
                     document.write(new Date().getFullYear())
-                </script> KRK Kota Tegal
+                </script> Sistem Pertanahan
             </p>
             <!-- /.social -->
         </div>

@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Peta yang di lengkapi dengan keterangan secara rinci mengenai pemanfaatan suatu persil">
-    <meta name="keywords" content="tegal, peta, krk, kota tegal, kabupaten tegal, krk kota tegal">
+    <meta name="keywords" content="tegal, peta, krk, Kota Surakarta, kabupaten tegal, Sistem Pertanahan">
     <meta name="author" content="phicos">
-    <title>Beranda | KRK Kota Tegal</title>
+    <title>Beranda | Sistem Pertanahan</title>
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('front/assets/img/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-kota-surakarta.png') }}">
     <!-- css -->
     <link rel="stylesheet" href="{{ asset('front/assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('front/assets/css/style.css') }}">

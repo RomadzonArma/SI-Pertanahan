@@ -10,7 +10,7 @@
             </div>
             <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
                 <div class="offcanvas-header d-lg-none">
-                    <h3 class="text-white fs-30 mb-0">KRK Kota Tegal</h3>
+                    <h3 class="text-white fs-30 mb-0">Sistem Pertanahan</h3>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
@@ -67,7 +67,7 @@
         <div class="row text-center">
             <div class="col-lg-9 col-xxl-7 mx-auto" data-cues="zoomIn" data-group="welcome" data-interval="-200">
                 <h2 class="display-1 ls-krk-12 title mb-2">KRK</h2>
-                <h3 class="display-5 title mb-3">(Keterangan Rencana Kota) <br>Kota Tegal</h3>
+                <h3 class="display-5 title mb-3">(Sistem Pertanahan) <br>Kota Surakarta</h3>
                 <p class="lead fs-24 lh-sm px-md-5 px-xl-15 px-xxl-10 mb-5 desc-200">Peta yang di lengkapi
                     dengan keterangan secara rinci mengenai pemanfaatan suatu persil</p>
             </div>

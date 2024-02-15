@@ -4,11 +4,11 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Keterangan Rencana Kota - Tegal</title>
+    <title>Sistem Pertanahan - Surakarta</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Peta yang di lengkapi dengan keterangan secara rinci mengenai pemanfaatan suatu persil">
-    <meta name="keywords" content="tegal, peta, krk, kota tegal, kabupaten tegal, krk kota tegal">
+    <meta name="keywords" content="tegal, peta, krk, Kota Surakarta, kabupaten tegal, Sistem Pertanahan">
     <meta name="author" content="phicos">
     {{-- <link rel="shortcut icon" href="assets/images/favicon.ico">
     <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -16,7 +16,7 @@
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" /> --}}
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('front/assets/img/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-kota-surakarta.png') }}">
     <!-- css -->
     <link rel="stylesheet" href="{{ asset('front/assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('front/assets/css/style.css') }}">
@@ -27,16 +27,16 @@
 
 <body>
 
-    <section class="bg-krk-primary vh-100 w-100 d-flex align-items-center">
+    <section class="vh-100 w-100 d-flex align-items-center">
         <div class="container">
             <div class="card login-page shadow mx-auto">
                 <div class="card-body p-4">
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-md-6 mt-10">
                             <img class="card-title w-10 mx-auto d-block mb-3"
-                                src="{{ asset('front/assets/img/favicon.png') }}" alt="" srcset="">
+                                src="{{ asset('img/logo-kota-surakarta.png') }}" alt="" srcset="">
                             <h3 class="display-5 mb-2 text-center">Login</h3>
-                            <p class="lead fs-14 lh-sm mx-auto mb-5 desc-500 text-center">Silahkan Login Terlebih Dahulu
+                            <p class="lead fs-14 lh-sm mx-auto mb-5 desc-500 text-center">Silakan Login Terlebih Dahulu
                             </p>
                             @if (Session::has('error-msg'))
                                 <div class="alert alert-danger" role="alert">
@@ -110,19 +110,16 @@
                                     </div><!--end col-->
 
                                     <div class="col-12 text-center">
-                                        <p class="mb-0 mt-3"><small class="text-dark me-2">Belum mempunyai akun /
-                                                Kembali Beranda ?</small> <a href="{{ route('register-pemohon') }}"
-                                                class="text-primary fw-bold">Registrasi</a> / <a
-                                                href="{{ route('/') }}" class="text-primary fw-bold">Beranda</a></p>
+                                        <p class="mb-0 mt-3"><a href="{{ route('/') }}" class="text-primary fw-bold">Beranda</a></p>
                                     </div><!--end col-->
                                 </div><!--end row-->
                             </form>
                         </div><!--end col-->
                         <div class="col-lg-6 col-md-6">
                             <div class="img-login d-none d-md-block p-3"
-                                style="background: linear-gradient(180deg, rgb(42 59 140 / 70%) 50%, rgb(37 52 129 / 45%) 100%), url({{ asset('front/assets/img/bg/taman-pancasila.jpeg') }})">
-                                <h2 class="display-1 ls-krk-12 title mb-2 text-center">KRK</h2>
-                                <h3 class="display-5 title mb-3 text-center">(Keterangan Rencana Kota) <br>Kota Tegal
+                                style="background: linear-gradient(180deg, rgb(42 59 140 / 70%) 50%, rgb(37 52 129 / 45%) 100%), url({{ asset('img/disperumkimtan.webp') }})">
+                                <h2 class="display-1 ls-krk-12 title mb-2 text-center"></h2>
+                                <h3 class="display-5 title mb-3 text-center">Sistem Pertanahan <br>Kota Surakarta
                                 </h3>
                             </div>
                         </div>
@@ -153,7 +150,7 @@
                         </div>
                         <div class="card-body pt-0">
                             <div>
-                                <a href="">
+                                <a href="javascript:;">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
                                             <img src="{{ asset('assets/images/logo.svg') }}" alt=""
@@ -210,11 +207,9 @@
                                         <button class="btn btn-primary btn-block waves-effect waves-light"
                                             type="submit">Masuk</button>
                                     </div>
-                                    <div class="mt-3">
-                                        <p class="mb-0">Belum mempunyai akun ?<a
-                                                href="{{ route('register-pemohon') }}" class="hover"> Daftar</a>
-                                        </p>
-                                    </div>
+                                    <!-- <div class="mt-3">
+                                        <p class="mb-0">Belum mempunyai akun ?<a href="{{ route('register-pemohon') }}" class="hover"> Daftar</a></p>
+                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -223,7 +218,7 @@
                         <p class="mb-0">©
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Keterangan Rencana Kota - Tegal
+                            </script> Sistem Pertanahan - Surakarta
                         </p>
                     </div>
                 </div>
