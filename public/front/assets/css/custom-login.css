@@ -1,0 +1,17 @@
+.login-absolute{
+    margin: -200px 0 0;
+}
+
+.btn-view-password {
+    outline: none;
+    color: #192335;
+    border: none;
+    border-left: 2px solid #d1d8e3;
+    background-color: transparent;
+    height: 100%;
+    width: 45px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    border-radius: 0 6px 6px 0;
+}

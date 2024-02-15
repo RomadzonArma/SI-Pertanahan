@@ -20,6 +20,8 @@ use App\Http\Controllers\BerandaController;
 */
 
 Route::get('/', [BerandaController::class, 'index'])->name('/');
+Route::get('/peta', [BerandaController::class, 'peta'])->name('peta');
+Route::get('/data', [BerandaController::class, 'data'])->name('data');
 
 Route::get('/login', function () {
     return redirect()->route('login');
@@ -29,7 +31,8 @@ Auth::routes();
 Route::get('/sendWa', [TestingController::class, 'sendWa'])->name('send-wa');
 
 Route::get('/register/pemohon', function () {
-    return view('auth.registerpemohon', []);
+    // return view('auth.registerpemohon', []);
+    return view('auth.register', []);
 })->name('register-pemohon');
 
 Route::post('/register/pemohon', [RegisterPemohonController::class, 'store'])->name('store-register');

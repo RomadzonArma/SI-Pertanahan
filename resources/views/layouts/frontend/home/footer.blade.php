@@ -1,64 +1,62 @@
-<footer class="bg-krk-gradient-secondary">
-    <div class="container pt-10 pt-md-10 pb-7">
-        <div class="row gy-6 gy-lg-0">
-            <div class="col-lg-5">
-                <div class="footer-widget">
-                    <div class="logo">
-                        <a href="javascript:;">
-                            <img src="{{ asset('img/logo-kota-surakarta.png') }}" alt="logo-krk-tegal" style="height: 60px;">
-                        </a>
-                    </div>
+<!-- Footer Start -->
+<footer class="footer bg-primary"
+    style="background: url('https://static.republika.co.id/uploads/images/xlarge/kompleks-masjid-agung-kesunanan-surakarta-di-solo-jawa-tengah_210731203302-106.jpeg') center center; background-repeat: no-repeat; background-size: cover;">
+    <div class="bg-overlay" style="border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-py-60 footer-border">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 mb-0 mb-md-6 px-md-4 pb-0 pb-md-2 pt-sm-0 p-0 m-0">
+                            <a href="#" class="logo-footer">
+                                <img src="{{ asset('img/logo-sip-surakarta.png') }}" height="72" alt="">
+                            </a>
+                            <p class="mt-4 text-white">Aplikasi ini pengelola data utilitas Tanah HP (Hak Pakai)
+                                Kota Surakarta
+                                dan pengelola pengajuan tanah PRODA (Proyek Operasi Daerah Agreria) berbasis online
+                                yang dilakukan oleh DISPERUM KPP </p>
+                        </div>
 
-                    <p class="description mt-5 desc-200">Sistem Pertanahan (KRK) adalah Peta yang di lengkapi
-                        dengan keterangan secara rinci mengenai pemanfaatan suatu persil.
-                    </p>
+                        <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2">
+                            <h5 class="footer-head">Aplikasi Terkait</h5>
+                            <ul class="list-unstyled footer-list mt-1">
+                                <li><a href="javascript:void(0)" class="text-white"><i
+                                            class="uil uil-angle-right-b me-1"></i> Disperum Surakarta</a></li>
+                                <li><a href="javascript:void(0)" class="text-white"><i
+                                            class="uil uil-angle-right-b me-1"></i> Pemkot Surakarta</a></li>
+                            </ul>
+                        </div>
 
-                    <div class="contact-btn mt-5">
-                        <nav class="nav social text-md-end">
-                            <a href="#"><i class="uil uil-twitter social-krk"></i></a>
-                            <a href="#"><i class="uil uil-facebook-f social-krk"></i></a>
-                            <a href="#"><i class="uil uil-instagram social-krk"></i></a>
-                        </nav>
+                        <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2 text-white">
+                            <h5 class="footer-head">Kontak</h5>
+                            <p class="mt-1">jl.jend. Sudirman No.02, Kp. baru, Kec. Ps. Kliwon, Kota Surakarta,
+                                Jawa
+                                Tengah, 57133 </p>
+                            <p class="mt-2">disperumkpp@gmail.com</p>
+                            <p class="mt-2">(0271) 64202021</p>
+                        </div>
+
+                    </div><!--end row-->
+                </div>
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+    <div class="footer-py-30">
+        <div class="container text-center">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="text-center">
+                        <p class="mb-0 text-white">©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> | <a href="https://shreethemes.in/" target="_blank"
+                                class="text-reset">DISPERUMKIMTAN Kota Surakarta</a>.
+                        </p>
                     </div>
-                </div>
-            </div>
-            <!-- /column -->
-            <div class="col-md-3 col-lg-3 offset-lg-1">
-                <div class="widget">
-                    <h4 class="widget-title mb-3 title">Link Terkait</h4>
-                    <ul class="list-unstyled text-reset mb-0">
-                        <li class="desc-200"><a href="#">Website Disperumkimtan Surakarta</a></li>
-                        <li class="desc-200"><a href="#">Website Kota Surakarta</a></li>
-                    </ul>
-                </div>
-                <!-- /.widget -->
-            </div>
-            <!-- /column -->
-            <div class="col-md-3 col-lg-3">
-                <div class="footer-widget">
-                    <h4 class="widget-title mb-3 title">Kontak</h4>
-                    <ul class="ft-link">
-                        <li class="desc-200"><i class="uil uil-envelope"></i> <a class="desc-200"
-                                href="mailto:dpukotategal@gmail.com">dpukotategal@gmail.com</a></li>
-                        <li class="desc-200"><i class="uil uil-phone-volume"></i> <a class="desc-200"
-                                href="#">(0283) 356353</a></li>
-                    </ul>
-                </div>
-                <!-- /.widget -->
-            </div>
-            <!-- /column -->
-        </div>
-        <!--/.row -->
-        <hr class="mt-13 mt-md-15 mb-7" />
-        <div class="d-md-flex align-items-center justify-content-center">
-            <p class="mb-2 mb-lg-0 desc-300">©
-                <script>
-                    document.write(new Date().getFullYear())
-                </script> Sistem Pertanahan
-            </p>
-            <!-- /.social -->
-        </div>
-        <!-- /div -->
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
     </div>
-    <!-- /.container -->
-</footer>
+</footer><!--end footer-->
+<!-- Footer End -->

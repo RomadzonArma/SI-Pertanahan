@@ -17,7 +17,7 @@ class RegisterPemohonController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'pekerjaan' => 'required',
             'email' => 'required|unique:users,email',
             'no_telp' => 'required',
@@ -28,7 +28,7 @@ class RegisterPemohonController extends Controller
 
         try {
             $profil_pemohon = ProfilPemohon::create([
-                'name' => $request->nama,
+                'name' => $request->name,
                 'pekerjaan' => $request->pekerjaan,
                 'email' => $request->email,
                 'no_telp' => $request->no_telp,
@@ -49,7 +49,7 @@ class RegisterPemohonController extends Controller
             // send WA
             $phone = formatPhoneNumberForWhatsApp($request->no_telp);
             $message = "Terima kasih telah mendaftarkan Akun KRK pada Platform KRK Online kami.
-        
+
 Untuk mengaksesnya silakan Bapak/Ibu log in melalui link ".route('login')."
 Username : {$request->username}
 Password : {$request->password}
