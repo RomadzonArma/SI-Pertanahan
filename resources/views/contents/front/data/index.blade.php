@@ -43,7 +43,7 @@
 
     <div class="section">
         <div class="container">
-            <table id="example" class="table table-striped table-bordered" style="width: 100%">
+            <table id="table_data" class="table table-striped table-bordered" style="width: 100%">
                 <thead>
                     <tr>
                         <th style="border-top-left-radius: 8px">Name</th>
@@ -358,3 +358,9 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        new DataTable("#table_data");
+    </script>
+@endpush

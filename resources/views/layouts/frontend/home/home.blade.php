@@ -28,11 +28,6 @@
     <link href="{{ asset('front/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('front/assets/css/line.css') }}" type="text/css" rel="stylesheet" />
 
-    <!-- amchart -->
-    <script src="{{ asset('front/assets/js/amchart/index.js') }}"></script>
-    <script src="{{ asset('front/assets/js/amchart/xy.js') }}"></script>
-    <script src="{{ asset('front/assets/js/amchart/Animated.js') }}"></script>
-
     <!-- Style Css-->
     <link href="{{ asset('front/assets/css/style.min.css') }}" id="color-opt" class="theme-opt" rel="stylesheet"
         type="text/css" />
@@ -42,6 +37,8 @@
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="{{ asset('assets\libs\leaflet\leaflet.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets\libs\datatables.net\css\dataTables.bootstrap5.min.css') }}" />
 </head>
 <style>
     #map {

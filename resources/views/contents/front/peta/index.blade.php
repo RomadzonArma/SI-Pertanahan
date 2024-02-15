@@ -37,8 +37,8 @@
     </div>
 
     <!-- <div class="position-relative">
-                    <div class="shape integration-hero overflow-hidden text-light"></div>
-                </div> -->
+                        <div class="shape integration-hero overflow-hidden text-light"></div>
+                    </div> -->
     <!-- Hero End -->
 
     <!-- Start -->
@@ -88,7 +88,7 @@
                                     <a href="javascript:void(0)" class="text-muted">TN</a>
                                 </div>
                                 <!-- <a href="tanah-lahan-detail.html" class="btn btn-primary btn-md flex-grow-1">Lihat
-                                                Sertifikat</a> -->
+                                                    Sertifikat</a> -->
 
                             </div>
                         </div>
@@ -148,3 +148,22 @@
     </section><!--end section-->
     <!-- End -->
 @endsection
+
+@push('scripts')
+    <!-- Leaflet JS -->
+    <script src="{{ asset('assets\libs\leaflet\leaflet.js') }}"></script>
+    <script>
+        // Inisialisasi peta Leaflet
+        var map = L.map('map').setView([51.505, -0.09], 13);
+
+        // Tambahkan layer peta dari Leaflet
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(map);
+
+        // Tambahkan marker
+        L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('Lokasi')
+            .openPopup();
+    </script>
+@endpush

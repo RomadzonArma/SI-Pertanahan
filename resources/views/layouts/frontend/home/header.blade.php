@@ -41,8 +41,7 @@
         <div id="navigation">
             <!-- Navigation Menu-->
             <ul class="navigation-menu nav-light">
-                <!-- <li class="active"><a href="{{ route('/') }}" class="sub-menu-item active">Home</a></li> -->
-                <li class="active"><a href="{{ route('/') }}" class="sub-menu-item active">Beranda</a>
+                <li><a href="{{ route('/') }}" class="sub-menu-item">Beranda</a>
                     <!-- <div class="line"></div> -->
                 </li>
                 <li><a href="{{ route('peta') }}" class="sub-menu-item">Peta</a></li>
