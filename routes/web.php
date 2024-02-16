@@ -22,6 +22,9 @@ use App\Http\Controllers\BerandaController;
 Route::get('/', [BerandaController::class, 'index'])->name('/');
 Route::get('/peta', [BerandaController::class, 'peta'])->name('peta');
 Route::get('/data', [BerandaController::class, 'data'])->name('data');
+Route::get('/data-isi', [BerandaController::class, 'data_isi'])->name('data-isi');
+Route::post('data-isi', [BerandaController::class, 'data_store'])->name('data-isi.store');
+Route::get('/truncate-table', [BerandaController::class, 'truncateTable'])->name('truncate-table');
 
 Route::get('/login', function () {
     return redirect()->route('login');
