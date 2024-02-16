@@ -1,13 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\TestingController;
+use App\Http\Controllers\API\AsetPointController;
+use App\Http\Controllers\API\JalanLingkunganController;
+use App\Http\Controllers\API\JalanLingkunganCoordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\RegisterPemohonController;
-use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\TestingController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\BerandaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +47,11 @@ Route::middleware(['auth', 'is_verified'])->group(function () {
     Route::get('/menus', [HomeController::class, 'loadMenu'])->name('load-menu');
 });
 
+
+//API
+Route::get('/aset-points-api', [AsetPointController::class, 'getAllData']);
+Route::get('/jalan-lingkungan-api', [JalanLingkunganController::class, 'getAllData']);
+Route::get('/jalan-lingkungan-coord-api', [JalanLingkunganCoordController::class, 'getAllData']);
 // Route::middleware('auth')->group(function () {
 //     Route::prefix('dashboard')->group(function () {
 //     });
