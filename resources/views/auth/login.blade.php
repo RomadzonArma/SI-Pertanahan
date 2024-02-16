@@ -68,7 +68,19 @@
                         <div class="card login-page border-0 shadow" style="z-index: 1">
                             <div class="card-body p-3 p-md-5">
                                 <p class="para-desc mx-auto text-center">Silahkan Login terlebih dahulu</p>
-                                <form class="login-form mt-2">
+                                @if (Session::has('error-msg'))
+                                    <div class="alert alert-danger" role="alert">
+                                        @php
+                                            Session::get('error-msg', 'default');
+                                        @endphp
+                                    </div>
+                                @endif
+                                @if (session('message'))
+                                    <div class="alert alert-danger">{{ session('message') }}</div>
+                                @endif
+                                <form class="login-form mt-2" action="{{ route('login') }}" autocomplete="off"
+                                    method="post">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="mb-3">
@@ -83,8 +95,15 @@
                                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                                         <circle cx="12" cy="7" r="4"></circle>
                                                     </svg>
-                                                    <input type="email" class="form-control ps-5"
-                                                        placeholder="Masukkan Username" name="email" required="">
+                                                    <input type="text"
+                                                        class="form-control ps-5 @error('username') is-invalid @enderror"
+                                                        id="username" name="username" value="{{ old('username') }}"
+                                                        placeholder="Masukkan Username" autofocus>
+                                                    @error('username')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div><!--end col-->
@@ -103,11 +122,17 @@
                                                             d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
                                                         </path>
                                                     </svg>
-                                                    <input type="password" class="form-control ps-5"
-                                                        placeholder="Masukkan Password" required=""
-                                                        id="template-op-form-password" name="password">
+                                                    <input type="password"
+                                                        class="form-control ps-5 @error('password') is-invalid @enderror"
+                                                        id="password" name="password" value="{{ old('password') }}"
+                                                        placeholder="Masukkan Password">
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                     <button type="button" class="btn-view-password"
-                                                        onclick="myFunction('template-op-form-password')">
+                                                        id="toggle-password" onclick="myFunction('password')">
                                                         <i id="eye" class="mdi mdi-eye"
                                                             style="display: none;"></i>
                                                         <i id="eye-slash" class="mdi mdi-eye-off"
@@ -134,9 +159,9 @@
 
                                         <div class="col-lg-12 mb-0">
                                             <div class="d-grid">
-                                                <a type="submit" class="btn btn-primary" role="button">
+                                                <button type="submit" class="btn btn-primary" role="button">
                                                     Login
-                                                </a>
+                                                </button>
                                             </div>
                                         </div><!--end col-->
 
@@ -164,6 +189,23 @@
     <!-- Back to top -->
 
     @include('layouts.frontend.home.script')
+    <script>
+        function myFunction(passwordId) {
+            var x = document.getElementById(passwordId);
+            var eye = document.getElementById('eye');
+            var eyeSlash = document.getElementById('eye-slash');
+
+            if (x.type === "password") {
+                x.type = "text";
+                eye.style.display = 'block';
+                eyeSlash.style.display = 'none';
+            } else {
+                x.type = "password";
+                eye.style.display = 'none';
+                eyeSlash.style.display = 'block';
+            }
+        }
+    </script>
 </body>
 
 
