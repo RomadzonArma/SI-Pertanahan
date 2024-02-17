@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Data;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class BerandaController extends Controller
 {

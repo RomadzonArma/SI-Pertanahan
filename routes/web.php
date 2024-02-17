@@ -10,6 +10,9 @@ use App\Http\Controllers\API\AsetPointController;
 use App\Http\Controllers\API\JalanLingkunganController;
 use App\Http\Controllers\API\JalanLingkunganCoordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DataAsetController;
+use App\Http\Controllers\DataJalanLingkunganController;
+use App\Http\Controllers\DataJalanLingkunganCoordController;
 use App\Http\Controllers\RegisterPemohonController;
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +55,15 @@ Route::middleware(['auth', 'is_verified'])->group(function () {
 Route::get('/aset-points-api', [AsetPointController::class, 'getAllData']);
 Route::get('/jalan-lingkungan-api', [JalanLingkunganController::class, 'getAllData']);
 Route::get('/jalan-lingkungan-coord-api', [JalanLingkunganCoordController::class, 'getAllData']);
+
+//get API
+Route::get('/transfer-data-aset', [DataAsetController::class, 'transferData'])->name('transfer-data-aset');
+Route::get('/truncate-table-aset', [DataAsetController::class, 'truncateTable'])->name('truncate-table-aset');
+Route::get('/transfer-data-jalan-lingkungan', [DataJalanLingkunganController::class, 'transferData'])->name('transfer-data-jalan-lingkungan');
+Route::get('/truncate-table-jalan-lingkungan', [DataJalanLingkunganController::class, 'truncateTable'])->name('truncate-table-jalan-lingkungan');
+Route::get('/transfer-data-jalan-lingkungan-coord', [DataJalanLingkunganCoordController::class, 'transferData'])->name('transfer-data-jalan-lingkungan-coord');
+Route::get('/truncate-table-jalan-lingkungan-coord', [DataJalanLingkunganCoordController::class, 'truncateTable'])->name('truncate-table-jalan-lingkungan-coord');
+
 // Route::middleware('auth')->group(function () {
 //     Route::prefix('dashboard')->group(function () {
 //     });
