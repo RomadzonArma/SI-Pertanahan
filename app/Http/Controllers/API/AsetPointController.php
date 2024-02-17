@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\model\AsetPoint;
+use App\Model\AsetPoint;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

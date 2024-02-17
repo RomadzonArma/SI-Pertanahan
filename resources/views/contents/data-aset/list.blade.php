@@ -40,4 +40,8 @@
 
 @push('scripts')
     <script src="{{ asset('js/page/data-aset/list.js?q=' . Str::random(5)) }}"></script>
+    @if (rbacCheck('data_aset', 3))
+    <script src="{{ asset('js/page/data-aset/sync-data-sijali.js?q=' . Str::random(5)) }}"></script>
+    <script src="{{ asset('js/page/data-aset/sync-data-sinta.js?q=' . Str::random(5)) }}"></script>
+    @endif
 @endpush

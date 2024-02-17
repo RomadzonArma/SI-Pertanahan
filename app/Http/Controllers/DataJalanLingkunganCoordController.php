@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\model\JalanLingkunganCoord;
+use App\Model\JalanLingkunganCoord;
 use Illuminate\Http\Request;
 
 class DataJalanLingkunganCoordController extends Controller

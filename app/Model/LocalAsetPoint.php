@@ -5,9 +5,8 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JalanLingkunganCoord extends Model
+class LocalAsetPoint extends Model
 {
     use HasFactory;
-    protected $table = 'jalan_lingkungan_coord';
-    protected $connection = 'mysql_3';
+    protected $table = 'aset_point';
 }

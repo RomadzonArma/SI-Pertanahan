@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
-use App\model\JalanLingkungan;
+use App\Model\JalanLingkungan;
 use App\Http\Controllers\Controller;
 
 class JalanLingkunganController extends Controller
