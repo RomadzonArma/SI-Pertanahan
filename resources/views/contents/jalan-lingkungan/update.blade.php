@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('jalan-lingkungan.store') }}" method="POST" enctype="multipart/form-data" id="form-update">
+                    <form action="{{ route('jalan-lingkungan.store') }}" method="POST" enctype="multipart/form-data" id="form-update" onsubmit="return false;">
                         @csrf
                         <input type="hidden" name="jalan_lingkungan_id" value="{{ @$jalan->id }}">
                         <div class="form-group">
@@ -25,11 +25,11 @@
                             <input class="form-control" type="text" name="penggunaan_saat_ini" id="penggunaan_saat_ini" value="{{ @$data_update->penggunaan_saat_ini }}">
                         </div>
                         <div class="form-group">
-                            <label for="sertifikat">File sertifikat (pdf)</label>
-                            <input class="form-control" type="file" name="sertifikat" id="sertifikat">
+                            <label for="sertifikat">File sertifikat (pdf maksimal 2Mb)</label>
+                            <input class="form-control" type="file" name="sertifikat" id="sertifikat" accept="image/jpeg,image/gif,image/png,application/pdf">
                         </div>
 
-                        <button type="button" class="btn btn-default">Batal</button>
+                        <a href="{{ route('jalan-lingkungan') }}" class="btn btn-default">Batal</a>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>

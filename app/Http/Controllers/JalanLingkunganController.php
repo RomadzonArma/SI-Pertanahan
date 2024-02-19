@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
 
 use App\Model\LocalJalanLingkungan;
 use App\Model\LocalJalanLingkunganCoord;
@@ -79,9 +80,35 @@ class JalanLingkunganController extends Controller
                     'penggunaan_saat_ini' => $request->penggunaan_saat_ini
                 ]
             );
-            return redirect()->route('jalan-lingkungan');
+
+            $request->validate([
+                'sertifikat' => 'file|max:2048|mimes:pdf,jpeg,png,jpg,gif',
+            ]);
+
+            if ($request->hasFile('sertifikat')) {
+                $file = $request->file('sertifikat');
+                $jalan_lingkungan_id = $request->jalan_lingkungan_id;
+                
+                $destination_path = 'uploads/jalan/' . $jalan_lingkungan_id . '/sertifikat';
+                if (!file_exists(public_path($destination_path))) {
+                    mkdir(public_path($destination_path), 0777, true);
+                }
+                
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($destination_path), $filename);
+                $file_path = $destination_path . '/' . $filename;
+
+                JalanLingkunganUpdate::updateOrCreate(
+                    ['jalan_lingkungan_id' => $request->jalan_lingkungan_id],
+                    [
+                        'sertifikat_file' => $file_path
+                    ]
+                );
+            }
+            
+            return response()->json(['status' => true, 'msg'=> 'Data jalan telah diperbarui'], 200);
         } catch (\Throwable $th) {
-            return redirect()->route('jalan-lingkungan');
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
 }
