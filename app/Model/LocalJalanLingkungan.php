@@ -36,6 +36,6 @@ class LocalJalanLingkungan extends Model
 
     public function data_foto()
     {
-        return $this->hasOne(JalanLingkunganFoto::class, 'jalan_lingkungan_id');
+        return $this->hasMany(JalanLingkunganFoto::class, 'jalan_lingkungan_id');
     }
 }
