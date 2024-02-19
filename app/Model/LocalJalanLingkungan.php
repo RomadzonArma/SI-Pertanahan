@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Model\Ref\RefKecamatanSijali;
 use App\Model\Ref\RefKelurahanSijali;
+use App\Model\Jalan\JalanLingkunganUpdate;
+use App\Model\Jalan\JalanLingkunganFoto;
 
 class LocalJalanLingkungan extends Model
 {
@@ -25,5 +27,15 @@ class LocalJalanLingkungan extends Model
     public function kel()
     {
         return $this->belongsTo(RefKelurahanSijali::class, 'Kelurahan', 'id_kelurahan');
+    }
+
+    public function data_update()
+    {
+        return $this->hasOne(JalanLingkunganUpdate::class, 'jalan_lingkungan_id');
+    }
+
+    public function data_foto()
+    {
+        return $this->hasOne(JalanLingkunganFoto::class, 'jalan_lingkungan_id');
     }
 }

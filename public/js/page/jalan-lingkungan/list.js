@@ -59,13 +59,14 @@ const load_table = ()=>{
         }, {
             data: 'id',
             render: (data, type, row) => {
-                const button_edit = $('<button>', {
+                const button_edit = $('<a>', {
                     class: 'btn btn-primary',
                     html: '<i class="bx bx-pencil"></i>',
                     'data-id': data,
                     title: 'Update',
                     'data-placement': 'top',
-                    'data-toggle': 'tooltip'
+                    'data-toggle': 'tooltip',
+                    href: BASE_URL + `jalan-lingkungan/update/${data}` 
                 });
 
                 return $('<div>', {

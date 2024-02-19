@@ -16,6 +16,7 @@ use App\Model\LocalJalanLingkungan;
 use App\Model\LocalJalanLingkunganCoord;
 use App\Model\Ref\RefKecamatanSijali;
 use App\Model\Ref\RefKelurahanSijali;
+use App\Model\Jalan\JalanLingkunganUpdate;
 
 class JalanLingkunganController extends Controller
 {
@@ -50,5 +51,37 @@ class JalanLingkunganController extends Controller
         return DataTables::of($transformed)
             ->addIndexColumn()
             ->make(true);
+    }
+
+    public function update(Request $request) {
+        try {
+            $jalan = LocalJalanLingkungan::with(['data_update','data_foto'])->findOrFail($request->id);
+            $data_update = $jalan->data_update;
+            $data_foto = $jalan->data_foto;
+            return view('contents.jalan-lingkungan.update', [
+                'title' => 'Update Jalan Lingkungan',
+                'jalan' => $jalan,
+                'data_update' => $data_update,
+                'data_foto' => $data_foto
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->route('jalan-lingkungan');
+        }
+    }
+
+    public function store(Request $request) {
+        try {
+            JalanLingkunganUpdate::updateOrCreate(
+                ['jalan_lingkungan_id' => $request->jalan_lingkungan_id],
+                [
+                    'nomor_sertifikat' => $request->nomor_sertifikat, 
+                    'nama_sertifikat' => $request->nama_sertifikat,
+                    'penggunaan_saat_ini' => $request->penggunaan_saat_ini
+                ]
+            );
+            return redirect()->route('jalan-lingkungan');
+        } catch (\Throwable $th) {
+            return redirect()->route('jalan-lingkungan');
+        }
     }
 }
