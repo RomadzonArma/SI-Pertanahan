@@ -66,7 +66,7 @@
                     <div class="login-absolute">
                         <div class="card login-page border-0 shadow" style="z-index: 1">
                             <div class="card-body p-3 p-md-5">
-                                <p class="para-desc mx-auto text-center">Silahkan Melakukan Registrasi</p>
+                                <p class="para-desc mx-auto text-center">Silakan Melakukan Registrasi</p>
                                 <form class="login-form mt-2">
                                     <div class="row">
                                         <div class="col-lg-12">

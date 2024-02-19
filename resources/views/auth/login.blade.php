@@ -67,7 +67,7 @@
                     <div class="login-absolute">
                         <div class="card login-page border-0 shadow" style="z-index: 1">
                             <div class="card-body p-3 p-md-5">
-                                <p class="para-desc mx-auto text-center">Silahkan Login terlebih dahulu</p>
+                                <p class="para-desc mx-auto text-center">Silakan Login terlebih dahulu</p>
                                 @if (Session::has('error-msg'))
                                     <div class="alert alert-danger" role="alert">
                                         @php
@@ -152,8 +152,7 @@
                                                             for="flexCheckDefault">Ingatkan saya</label>
                                                     </div>
                                                 </div>
-                                                <p class="forgot-pass mb-0"><a href="auth-cover-re-password.html"
-                                                        class="text-dark fw-bold">Lupa password ?</a></p>
+                                                <p class="forgot-pass mb-0"><a href="javascript:;" class="text-dark fw-bold">Lupa password ?</a></p>
                                             </div>
                                         </div><!--end col-->
 
@@ -166,9 +165,10 @@
                                         </div><!--end col-->
 
                                         <div class="col-12 text-center">
-                                            <p class="mb-0 mt-3"><small class="text-dark me-2">Belum memiliki akun
-                                                    ?</small> <a href="{{ route('register-pemohon') }}"
-                                                    class="text-dark fw-bold">Buat Akun</a></p>
+                                            <p class="mb-0 mt-3">
+                                                <!-- <small class="text-dark me-2">Belum memiliki akun ?</small>  -->
+                                                <a href="{{ route('/') }}" class="text-dark fw-bold">Kembali ke Beranda</a>
+                                            </p>
                                         </div><!--end col-->
                                     </div><!--end row-->
                                 </form>
@@ -184,8 +184,7 @@
     @include('layouts.frontend.home.footer')
 
     <!-- Back to top -->
-    <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top fs-5 bg-primary"><i
-            data-feather="arrow-up" class="fea icon-sm icons align-middle"></i></a>
+    <a href="javascript:;" onclick="topFunction()" id="back-to-top" class="back-to-top fs-5 bg-primary"><i data-feather="arrow-up" class="fea icon-sm icons align-middle"></i></a>
     <!-- Back to top -->
 
     @include('layouts.frontend.home.script')

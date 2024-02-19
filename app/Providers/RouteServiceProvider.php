@@ -55,10 +55,8 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapOtoritasRoutes();
 
-            $this->mapPengajuanRoutes();
+            $this->mapDataAsetRoutes();
 
-            $this->mapTimLapanganRoutes();
-            
             $this->mapPertanahanRoutes();
         });
     }
@@ -120,23 +118,9 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/panel/otoritas.php'));
     }
 
-    protected function mapPengajuanRoutes()
+    protected function mapDataAsetRoutes()
     {
-        Route::prefix('pengajuan')
-            // ->namespace($this->namespace)
-            ->group(base_path('routes/panel/pengajuan.php'));
-    }
-
-    protected function mapTimLapanganRoutes()
-    {
-        Route::prefix('timlapangan')
-            ->group(base_path('routes/panel/timlapangan.php'));
-    }
-
-    protected function mapPertanahanRoutes()
-    {
-        Route::prefix('pertanahan')
-            // ->namespace($this->namespace)
-            ->group(base_path('routes/panel/pertanahan.php'));
+        Route::prefix('data-aset')
+            ->group(base_path('routes/panel/data-aset.php'));
     }
 }
