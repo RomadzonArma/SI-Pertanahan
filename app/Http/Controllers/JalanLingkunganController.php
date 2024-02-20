@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 use App\Model\LocalJalanLingkungan;
 use App\Model\LocalJalanLingkunganCoord;
 use App\Model\Ref\RefKecamatanSijali;
 use App\Model\Ref\RefKelurahanSijali;
 use App\Model\Jalan\JalanLingkunganUpdate;
+use App\Model\Jalan\JalanLingkunganFoto;
 
 class JalanLingkunganController extends Controller
 {
@@ -54,6 +56,7 @@ class JalanLingkunganController extends Controller
             ->make(true);
     }
 
+    // update data
     public function update(Request $request) {
         try {
             $jalan = LocalJalanLingkungan::with(['data_update','data_foto'])->findOrFail($request->id);
@@ -65,7 +68,7 @@ class JalanLingkunganController extends Controller
                 'data_update' => $data_update,
                 'data_foto' => $data_foto
             ]);
-        } catch (\Throwable $th) {
+        } catch (\Throwable $e) {
             return redirect()->route('jalan-lingkungan');
         }
     }
@@ -107,8 +110,103 @@ class JalanLingkunganController extends Controller
             }
             
             return response()->json(['status' => true, 'msg'=> 'Data jalan telah diperbarui'], 200);
-        } catch (\Throwable $th) {
+        } catch (\Throwable $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
+    }
+
+    // foto
+    public function foto(Request $request) {
+        try {
+            $jalan = LocalJalanLingkungan::with(['data_foto'])->findOrFail($request->id);
+            return response()->json(['status' => true, 'msg'=> 'Data foto', 'data'=>$jalan], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function dataFoto(Request $request) {
+        $list = JalanLingkunganFoto::where('jalan_lingkungan_id', $request->id)->get();
+        $transformed = $list->map(function ($item, $key) {
+            $item->image_url = asset($item->foto_file);
+            return $item;
+        });
+        return DataTables::of($transformed)
+            ->addIndexColumn()
+            ->make(true);
+    }
+
+    public function storeFoto(Request $request) {
+        try {
+            $jalan_lingkungan_id = $request->jalan_lingkungan_id;
+            $destination_path = 'uploads/jalan/' . $jalan_lingkungan_id . '/foto';
+            if (!file_exists(public_path($destination_path))) {
+                mkdir(public_path($destination_path), 0777, true);
+            }
+
+            $request->validate([
+                'file_foto.*' => 'file|max:2048|mimes:jpeg,png,jpg,gif',
+            ]);
+
+            if ($request->hasFile('file_foto')) {
+                $files = $request->file('file_foto');
+                foreach ($files as $file) {
+                    // Sanitize the original file name
+                    $originalName = $file->getClientOriginalName();
+                    $safeName = $this->sanitizeFileName($originalName);
+
+                    // Ensure the file name is unique
+                    $filename = $this->makeFilenameUnique($safeName, $destination_path);
+
+                    $file->move(public_path($destination_path), $filename);
+                    $file_path = $destination_path . '/' . $filename;
+
+                    JalanLingkunganFoto::create([
+                        'jalan_lingkungan_id' => $jalan_lingkungan_id,
+                        'foto_file' => $file_path
+                    ]);
+                }
+            }
+            
+            return response()->json(['status' => true, 'msg'=> 'Foto telah diupload'], 200);
+        } catch (\Throwable $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    public function deleteFoto(Request $request) {
+        try {
+            $id = $request->id;
+            $model = JalanLingkunganFoto::find($id);
+            if ($model) {
+                $model->delete();
+                return response()->json(['status' => true, 'msg'=> 'Foto telah dihapus'], 200);
+            } else {
+                return response()->json(['status' => false, 'msg'=> 'Foto tidak ditemukan'], 200);
+            }
+        } catch (\Throwable $e) {
+            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
+        }
+    }
+
+    protected function sanitizeFileName($fileName) {
+        $fileName = mb_ereg_replace("\s", '_', $fileName);
+        $fileName = mb_ereg_replace("([^\w\d\-_~,;\[\]\(\).])", '', $fileName);
+        $fileName = mb_ereg_replace("([\.]{2,})", '', $fileName);
+        return $fileName;
+    }
+
+    protected function makeFilenameUnique($fileName, $destinationPath) {
+        $originalName = pathinfo($fileName, PATHINFO_FILENAME);
+        $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+        $counter = 1;
+        $newFileName = $fileName;
+    
+        while (file_exists(public_path($destinationPath) . '/' . $newFileName)) {
+            $newFileName = $originalName . '_' . $counter . '.' . $extension;
+            $counter++;
+        }
+    
+        return $newFileName;
     }
 }

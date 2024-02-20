@@ -24,6 +24,7 @@ $('#filter-kel').on('change', (e)=>{
 const load_table = ()=>{
     table = $('#table-data').DataTable({
         language: dtLang,
+        stateSave: true,
         destroy: true,
         serverSide: true,
         processing: true,
@@ -69,13 +70,24 @@ const load_table = ()=>{
                     href: BASE_URL + `jalan-lingkungan/update/${data}` 
                 });
 
+                const button_foto = $('<button>', {
+                    class: 'btn btn-warning btn-update-foto',
+                    html: `<i class="bx bx-image" data-id="${data}"></i>`,
+                    'data-id': data,
+                    title: 'Foto',
+                    'data-placement': 'top',
+                    'data-toggle': 'tooltip',
+                    type: 'button' 
+                });
+
                 return $('<div>', {
                     class: 'btn-group',
                     html: () => {
                         let arr = [];
 
                         if (permissions.update) {
-                            arr.push(button_edit)
+                            arr.push(button_edit);
+                            arr.push(button_foto);
                         }
 
                         return arr;
