@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\AsetPoint;
+use App\Model\Pertanahan\PertanahanUpdate;
 use App\Model\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class PertanahanController extends Controller
 
     public function data(Request $request)
     {
-        $list = AsetPoint::on('mysql')->select([
+        $list = AsetPoint::on('mysql')->with(['data_update', 'data_foto'])->select([
             'id',
             'kec_id',
             'kel_id',
@@ -49,82 +50,58 @@ class PertanahanController extends Controller
             ->make(true);
     }
 
+    public function update(Request $request)
+    {
+        $tanah = AsetPoint::on('mysql')->with(['data_update', 'data_foto'])->findOrFail($request->id);
+        $data_update = $tanah->data_update;
+        $data_foto = $tanah->data_foto;
+        return view('contents.pertanahan.update', [
+            'title' => 'Update Pertanahan',
+            'tanah' => $tanah,
+            'data_update' => $data_update,
+            'data_foto' => $data_foto
+        ]);
+    }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'pekerjaan' => 'required',
-            'email' => 'required|unique:users,email',
-            'no_telp' => 'required',
-            'alamat' => 'required',
-            'username' => 'required|unique:users,username',
-            'password' => 'required|min:5',
-            'confirmation_password' => 'required|same:password'
-        ]);
-
         try {
-            $user = User::create([
-                'name' => $request->name,
-                'pekerjaan' => $request->pekerjaan,
-                'email' => $request->email,
-                'no_telp' => $request->no_telp,
-                'alamat' => $request->alamat,
-                'is_verified' => 1,
-                'username' => $request->username,
-                'password' => Hash::make($request->password)
+            PertanahanUpdate::updateOrCreate(
+                ['aset_point_id' => $request->aset_point_id],
+                [
+                    'nomor_sertifikat' => $request->nomor_sertifikat,
+                    'nama_sertifikat' => $request->nama_sertifikat,
+                    'penggunaan_saat_ini' => $request->penggunaan_saat_ini
+                ]
+            );
+
+            $request->validate([
+                'sertifikat' => 'file|max:2048|mimes:pdf,jpeg,png,jpg,gif',
             ]);
 
-            return response()->json(['status' => true], 200);
-        } catch (\Exception $e) {
-            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
-        }
-    }
+            if ($request->hasFile('sertifikat')) {
+                $file = $request->file('sertifikat');
+                $aset_point_id = $request->aset_point_id;
 
-    public function update(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'pekerjaan' => 'required',
-            'email' => ['required', Rule::unique('users', 'email')->ignore($request->id)],
-            'no_telp' => 'required',
-            'alamat' => 'required',
-            'username' => ['required', Rule::unique('users', 'username')->ignore($request->id)]
-        ]);
+                $destination_path = 'uploads/tanah/' . $aset_point_id . '/sertifikat';
+                if (!file_exists(public_path($destination_path))) {
+                    mkdir(public_path($destination_path), 0777, true);
+                }
 
-        try {
-            $user = User::find($request->id);
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($destination_path), $filename);
+                $file_path = $destination_path . '/' . $filename;
 
-            $user->name = $request->name;
-            $user->username = $request->username;
-            $user->pekerjaan = $request->pekerjaan;
-            $user->email = $request->email;
-            $user->no_telp = $request->no_telp;
-            $user->alamat = $request->alamat;
-
-            if ($user->isDirty()) {
-                $user->save();
+                PertanahanUpdate::updateOrCreate(
+                    ['aset_point_id' => $request->aset_point_id],
+                    [
+                        'sertifikat_file' => $file_path
+                    ]
+                );
             }
 
-            if ($user->wasChanged()) {
-                return response()->json(['status' => true], 200);
-            }
-        } catch (\Exception $e) {
-            return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
-        }
-    }
-
-    public function delete(Request $request)
-    {
-        try {
-            $user = User::find($request->id);
-
-            $user->delete();
-
-            if ($user->trashed()) {
-                return response()->json(['status' => true], 200);
-            }
-        } catch (\Exception $e) {
+            return response()->json(['status' => true, 'msg' => 'Data tanah telah diperbarui'], 200);
+        } catch (\Throwable $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
     }
