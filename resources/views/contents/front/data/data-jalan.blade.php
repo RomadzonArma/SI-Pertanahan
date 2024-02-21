@@ -1,4 +1,7 @@
 @extends('layouts.frontend.home.home')
+@php
+    $plugins = ['select2'];
+@endphp
 
 
 @section('contents')
@@ -43,11 +46,31 @@
 
     <div class="section">
         <div class="container">
+            <div class="col-6">
+
+                <div class="row p-2">
+                    <div class="col-4 form-group">
+                        <label for="filter-kec">Kecamatan</label>
+                        <select class="form-control" id="filter-kec">
+                            <option value="">Semua Kecamatan</option>
+                            @foreach ($ref_kec as $row)
+                                <option value="{{ $row->id_kecamatan }}">{{ $row->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-4 form-group">
+                        <label for="filter-kel">Kelurahan</label>
+                        <select class="form-control" id="filter-kel"></select>
+                    </div>
+
+                </div>
+
+            </div>
             <table id="table-data" class="table table-striped table-bordered" style="width: 100%">
                 <thead>
                     <tr>
                         <th style="border-top-left-radius: 8px">No</th>
-                        <th>FID</th>
                         <th>Kecamatan</th>
                         <th>Kelurahan</th>
                         <th>Nama Jalan</th>
@@ -66,6 +89,10 @@
 
 @push('scripts')
     <script>
+        window.ref_kec = @json($ref_kec);
+        window.ref_kel = @json($ref_kel);
+    </script>
+    <script>
         let table;
 
         $(document).ready(function() {
@@ -77,6 +104,10 @@
                     url: '{{ route('data-jalan.data') }}',
                     type: "get",
                     dataType: "json",
+                    data: function(d) {
+                        d.kode_kec = $('#filter-kec').val();
+                        d.kode_kel = $('#filter-kel').val();
+                    },
                 },
                 order: [
                     [3, "desc"]
@@ -88,10 +119,6 @@
                 }, ],
                 columns: [{
                         data: 'DT_RowIndex',
-                    },
-
-                    {
-                        data: 'FID',
                     },
                     {
                         data: 'kec.nama'
@@ -117,7 +144,7 @@
                                 title: 'Detail',
                                 'data-placement': 'top',
                                 'data-toggle': 'tooltip',
-                                href: '{{ url('detail-jalan')}}/' + data,
+                                href: '{{ url('detail-jalan') }}/' + data,
                                 role: 'button',
                                 html: '<i class="bx bx-eye"></i> Detail'
                             });
@@ -132,6 +159,29 @@
                 ]
             });
 
+            $(() => {
+                $('#filter-kec').trigger('change');
+            });
+
+            $('#filter-kec').on('change', (e) => {
+                let kel = ref_kel.filter(o => {
+                    return o.id_kecamatan == e.target.value;
+                });
+                let select_kel = $('#filter-kel');
+                select_kel.empty();
+                select_kel.append(new Option('Semua Kelurahan', ''));
+                for (const i of kel) {
+                    select_kel.append(new Option(i.nama, i.id_kelurahan));
+                }
+                select_kel.trigger('change');
+                return;
+            });
+
+            $('#filter-kel').on('change', (e) => {
+                if (typeof table != 'undefined') table.draw();
+                else load_table();
+                return;
+            });
         });
     </script>
 @endpush

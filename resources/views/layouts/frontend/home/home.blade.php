@@ -38,12 +38,16 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="{{ asset('assets\libs\leaflet\leaflet.css') }}" />
 
+
     <link rel="stylesheet" href="{{ asset('assets\libs\datatables.net\css\dataTables.bootstrap5.min.css') }}" />
     @if (in_array('swal', @$plugins))
         <!-- Sweet Alert-->
         <link href="{{ config('app.theme') }}assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet"
             type="text/css" />
     @endif
+    @if (in_array('select2', @$plugins))
+    <link href="{{ config('app.theme') }}assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+@endif
 </head>
 <style>
     #map {

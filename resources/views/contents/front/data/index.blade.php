@@ -1,5 +1,7 @@
     @extends('layouts.frontend.home.home')
-
+    @php
+        $plugins = ['select2'];
+    @endphp
 
     @section('contents')
         <!-- Hero Start -->
@@ -43,6 +45,27 @@
 
         <div class="section">
             <div class="container">
+                <div class="col-6">
+
+                    <div class="row p-2">
+                        <div class="col-4 form-group">
+                            <label for="filter-kec">Kecamatan</label>
+                            <select class="form-control" id="filter-kec">
+                                <option value="">Semua Kecamatan</option>
+                                @foreach ($ref_kec as $row)
+                                    <option value="{{ $row->id_kecamatan }}">{{ $row->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-4 form-group">
+                            <label for="filter-kel">Kelurahan</label>
+                            <select class="form-control" id="filter-kel"></select>
+                        </div>
+
+                    </div>
+
+                </div>
                 <table id="table-data" class="table table-striped table-bordered" style="width: 100%">
                     <thead>
                         <tr>
@@ -66,6 +89,10 @@
     @push('scripts')
         {{-- <script src="{{ asset('js/page/data-tanah/list.js?q=' . Str::random(5)) }}"></script> --}}
         <script>
+            window.ref_kec = @json($ref_kec);
+            window.ref_kel = @json($ref_kel);
+        </script>
+        <script>
             let table;
 
             $(document).ready(function() {
@@ -73,10 +100,15 @@
                 table = $("#table-data").DataTable({
                     processing: true,
                     serverSide: true,
+                    searching: true,
                     ajax: {
-                        url: '{{ route('data-tanah') }}',
+                        url: '{{ route('data-tanah.data') }}',
                         type: "get",
                         dataType: "json",
+                        data: function(d) {
+                            d.kode_kec = $('#filter-kec').val();
+                            d.kode_kel = $('#filter-kel').val();
+                        },
                     },
                     order: [
                         [3, "desc"]
@@ -104,31 +136,53 @@
                         {
                             data: 'luas',
                         },
-                        {
-                        data: 'id',
-                        render: (data, type, row) => {
-                            const buttonDetail = $('<a>', {
-                                class: 'btn btn-info btn-detail',
-                                'data-id': data,
-                                title: 'Detail',
-                                'data-placement': 'top',
-                                'data-toggle': 'tooltip',
-                                href: '{{ url("detail-tanah") }}/' + data,
-                                role: 'button',
-                                html: '<i class="bx bx-eye"></i> Detail'
-                            });
 
-                            return $('<div>', {
-                                class: 'd-flex justify-content-center align-items-center', // Bootstrap classes for centering
-                                style: 'height: 100%;', // Specify a fixed height to keep the button size constant
-                                html: buttonDetail
-                            }).prop('outerHTML');
+                        {
+                            data: 'id',
+                            render: (data, type, row) => {
+                                const buttonDetail = $('<a>', {
+                                    class: 'btn btn-info btn-detail',
+                                    'data-id': data,
+                                    title: 'Detail',
+                                    'data-placement': 'top',
+                                    'data-toggle': 'tooltip',
+                                    href: '{{ url('detail-tanah') }}/' + data,
+                                    role: 'button',
+                                    html: '<i class="bx bx-eye"></i> Detail'
+                                });
+
+                                return $('<div>', {
+                                    class: 'd-flex justify-content-center align-items-center', // Bootstrap classes for centering
+                                    style: 'height: 100%;', // Specify a fixed height to keep the button size constant
+                                    html: buttonDetail
+                                }).prop('outerHTML');
+                            }
                         }
-                    }
                     ]
                 });
+                $(() => {
+                    $('#filter-kec').trigger('change');
+                });
+
+                $('#filter-kec').on('change', (e) => {
+                    let kel = ref_kel.filter(o => {
+                        return o.id_kecamatan == e.target.value;
+                    });
+                    let select_kel = $('#filter-kel');
+                    select_kel.empty();
+                    select_kel.append(new Option('Semua Kelurahan', ''));
+                    for (const i of kel) {
+                        select_kel.append(new Option(i.nama, i.id_kelurahan));
+                    }
+                    select_kel.trigger('change');
+                    return;
+                });
+
+                $('#filter-kel').on('change', (e) => {
+                    if (typeof table != 'undefined') table.draw();
+                    else load_table();
+                    return;
+                });
             });
-
-
         </script>
     @endpush

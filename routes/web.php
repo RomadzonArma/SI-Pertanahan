@@ -27,8 +27,8 @@ use App\Http\Controllers\RegisterPemohonController;
 
 Route::get('/', [BerandaController::class, 'index'])->name('/');
 Route::get('/peta', [BerandaController::class, 'peta'])->name('peta');
-Route::get('/data', [BerandaController::class, 'data'])->name('data');
-Route::get('/data-tanah', [BerandaController::class, 'dataTanah'])->name('data-tanah');
+Route::get('/data-tanah', [BerandaController::class, 'data'])->name('data-tanah');
+Route::get('/data-tanahs', [BerandaController::class, 'dataTanah'])->name('data-tanah.data');
 Route::get('/detail-tanah/{id}', [BerandaController::class, 'show'])->name('data-tanah.show');
 Route::get('/data-jalan',[BerandaController::class, 'dataJalan'])->name('data-jalan');
 Route::get('/data-jalans',[BerandaController::class, 'dataJalans'])->name('data-jalan.data');
