@@ -1,60 +1,27 @@
-let table;
+var table;
 $(() => {
-    // $('#form-pertanahan-update').on('submit', function (e) {
-    //     e.preventDefault();
+    $('#filter-kec').trigger('change');
+});
 
-    //     var data = new FormData(this);
+$('#filter-kec').on('change', (e) => {
+    let kel = ref_kel.filter(o => { return o.id_kecamatan == e.target.value; });
+    let select_kel = $('#filter-kel');
+    select_kel.empty();
+    select_kel.append(new Option('Semua Kelurahan', ''));
+    for (const i of kel) {
+        select_kel.append(new Option(i.nama, i.id_kelurahan));
+    }
+    select_kel.trigger('change');
+    return;
+});
 
-    //     $.ajax({
-    //         url: $(this).attr('action'),
-    //         type: $(this).attr('method'),
-    //         data: data,
-    //         dataType: 'json',
-    //         processData: false,
-    //         contentType: false,
-    //         beforeSend: () => {
-    //             clearErrorMessage();
-    //             $('#modal-pertanahan-update').find('.modal-dialog').LoadingOverlay('show');
-    //         },
-    //         success: (res) => {
-    //             $('#modal-pertanahan-update').find('.modal-dialog').LoadingOverlay('hide', true);
-    //             $(this)[0].reset();
-    //             clearErrorMessage();
-    //             table.ajax.reload();
-    //             $('#modal-pertanahan-update').modal('hide');
-    //         },
-    //         error: ({ status, responseJSON }) => {
-    //             $('#modal-pertanahan-update').find('.modal-dialog').LoadingOverlay('hide', true);
+$('#filter-kel').on('change', (e) => {
+    if (typeof table != 'undefined') table.draw();
+    else load_table();
+    return;
+});
 
-    //             if (status == 422) {
-    //                 generateErrorMessage(responseJSON, true);
-    //                 return false;
-    //             } else if(status == 200){
-    //                 $(this)[0].reset();
-    //                 clearErrorMessage();
-    //                 table.ajax.reload();
-    //                 $('#modal-pertanahan-update').modal('hide');
-    //             }
-
-    //             if(typeof responseJSON!='undefined') showErrorToastr('oops', responseJSON.msg)
-    //         }
-    //     })
-    // })
-
-    // $('#table-data').on('click', '.btn-update', function () {
-    //     var tr = $(this).closest('tr');
-    //     var data = table.row(tr).data();
-
-    //     clearErrorMessage();
-    //     $('#form-pertanahan-update')[0].reset();
-
-    //     $.each(data, (key, value) => {
-    //         $('#update-' + key).val(value);
-    //     })
-
-    //     $('#modal-pertanahan-update').modal('show');
-    // })
-
+const load_table = () => {
     table = $('#table-data').DataTable({
         language: dtLang,
         serverSide: true,
@@ -62,32 +29,40 @@ $(() => {
         ajax: {
             url: BASE_URL + 'pertanahan/data',
             type: 'get',
-            dataType: 'json'
+            dataType: 'json',
+            data: function (d) {
+                d.kode_kec = $('#filter-kec').val();
+                d.kode_kel = $('#filter-kel').val();
+            },
+            beforeSend: function () {
+                $("#table-data").LoadingOverlay('show');
+            },
+            complete: function () {
+                $("#table-data").LoadingOverlay('hide', true);
+            }
         },
         order: [[1, 'desc']],
         columns: [
             {
-                // data: 'DT_RowIndex',
-                // name: 'DT_RowIndex',
-                className: 'dt-control',
-                orderable: false,
-                defaultContent: '<i class="fas fa-chevron-down"></i>'
+                data: 'DT_RowIndex',
             },
             {
                 data: 'pengg_seka',
-                name: 'pengg_seka'
             },
             {
                 data: 'pengg_sertif',
-                name: 'pengg_sertif'
             },
             {
                 data: 'no_hp',
-                name: 'no_hp'
+            },
+            {
+                data: 'nama_kecamatan'
+            },
+            {
+                data: 'nama_kelurahan'
             },
             {
                 data: 'luas',
-                name: 'luas'
             },
             {
                 data: 'id',
@@ -118,48 +93,5 @@ $(() => {
             }
         ]
     });
+}
 
-    function format(d) {
-        let nomorSertifikat = d.data_update && d.data_update.nomor_sertifikat ? d.data_update.nomor_sertifikat : '<span style="color: red; font-style: italic;">data belum tersedia</span>';
-        let namaSertifikat = d.data_update && d.data_update.nama_sertifikat ? d.data_update.nama_sertifikat : '<span style="color: red; font-style: italic;">data belum tersedia</span>';
-        let penggunaanSaatIni = d.data_update && d.data_update.penggunaan_saat_ini ? d.data_update.penggunaan_saat_ini : '<span style="color: red; font-style: italic;">data belum tersedia</span>';
-
-        return (
-            '<dl>' +
-            '<dt>Nomor Sertifikat:</dt>' +
-            '<dd>' +
-            nomorSertifikat +
-            '</dd>' +
-            '<dt>Nama Sertifikat:</dt>' +
-            '<dd>' +
-            namaSertifikat +
-            '</dd>' +
-            '<dt>Penggunaan Saat Ini:</dt>' +
-            '<dd>' +
-            penggunaanSaatIni +
-            '</dd>' +
-            '</dl>'
-        );
-    }
-
-    // Add event listener for opening and closing details
-    table.on('click', 'td.dt-control', function (e) {
-        let tr = $(this).closest('tr');
-        let row = table.row(tr);
-
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            // Ganti ikon ke bawah ketika tertutup
-            $(this).html('<i class="fas fa-chevron-down"></i>');
-        } else {
-            // Open this row
-            row.child(format(row.data())).show();
-            // Ganti ikon ke atas ketika terbuka
-            $(this).html('<i class="fas fa-chevron-up"></i>');
-        }
-    });
-
-
-
-})

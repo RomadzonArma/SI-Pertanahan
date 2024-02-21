@@ -7,3 +7,4 @@ Route::get('/', [PertanahanController::class, 'index'])->name('pertanahan')->mid
 Route::get('/data', [PertanahanController::class, 'data'])->name('pertanahan.data')->middleware('rbac:pertanahan');
 Route::get('/update/{id}', [PertanahanController::class, 'update'])->name('pertanahan.update')->middleware('rbac:pertanahan');
 Route::post('/store', [PertanahanController::class, 'store'])->name('pertanahan.store')->middleware('rbac:pertanahan, 3');
+Route::delete('/delete-photo/{id}', [PertanahanController::class, 'deletePhoto'])->name('pertanahan.deletePhoto')->middleware('rbac:pertanahan,4');

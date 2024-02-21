@@ -114,3 +114,7 @@
     <script src="{{ config('app.theme') }}assets/libs/chart.js/Chart.bundle.min.js?q={{ Str::random(5) }}"></script>
     <script src="{{ config('app.theme') }}assets/js/pages/chartjs.init.js?q={{ Str::random(5) }}"></script>
 @endif
+
+@if (in_array('dropzone', $plugins))
+    <script src="{{ config('app.theme') }}assets/libs/dropzone/min/dropzone.min.js?q={{ Str::random(5) }}"></script>
+@endif

@@ -11,6 +11,10 @@ class PertanahanFoto extends Model
 {
     use HasFactory;
     protected $table = 'aset_point_foto';
+    protected $fillable = [
+        'aset_point_id',
+        'foto_file',
+    ];
 
     use SoftDeletes;
 
