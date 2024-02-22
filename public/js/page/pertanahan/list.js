@@ -78,6 +78,16 @@ const load_table = () => {
                         href: BASE_URL + `pertanahan/update/${data}`
                     });
 
+                    const button_foto = $('<button>', {
+                        class: 'btn btn-warning btn-update-foto',
+                        html: `<i class="bx bx-image" data-id="${data}"></i>`,
+                        'data-id': data,
+                        title: 'Foto',
+                        'data-placement': 'top',
+                        'data-toggle': 'tooltip',
+                        type: 'button'
+                    });
+
                     return $('<div>', {
                         class: 'btn-group',
                         html: () => {
@@ -85,6 +95,7 @@ const load_table = () => {
 
                             if (permissions.update) {
                                 arr.push(button_edit)
+                                arr.push(button_foto)
                             }
                             return arr;
                         }

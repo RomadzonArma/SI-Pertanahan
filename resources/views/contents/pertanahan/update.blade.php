@@ -79,10 +79,10 @@
                             <input class="form-control" type="file" name="sertifikat" id="sertifikat"
                                 accept="image/jpeg,image/gif,image/png,application/pdf">
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for="foto">Foto (multiple, maksimal 2Mb per foto)</label>
                             <input class="form-control" type="file" name="foto[]" id="foto" accept="image/jpeg,image/gif,image/png" multiple>
-                        </div>
+                        </div> --}}
                         <a href="{{ route('pertanahan') }}" class="btn btn-default">Batal</a>
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
