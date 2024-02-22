@@ -2,11 +2,13 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Model\Ref\RefKecamatanSinta;
+use App\Model\Ref\RefKelurahanSinta;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Model\Ref\RefKecamatanSijali;
-use App\Model\Ref\RefKelurahanSijali;
+// use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LocalAsetPoint extends Model
 {
@@ -15,12 +17,12 @@ class LocalAsetPoint extends Model
 
     public function kec()
     {
-        return $this->belongsTo(RefKecamatanSijali::class, 'Kecamatan', 'id_kecamatan');
+        return $this->belongsTo(RefKecamatanSinta::class, 'kec_id', 'id_kecamatan');
     }
 
     public function kel()
     {
-        return $this->belongsTo(RefKelurahanSijali::class, 'Kelurahan', 'id_kelurahan');
+        return $this->belongsTo(RefKelurahanSinta::class, 'kel_id', 'id_kelurahan');
     }
 
 }

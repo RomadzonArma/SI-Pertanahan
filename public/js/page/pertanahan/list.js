@@ -41,7 +41,7 @@ const load_table = () => {
                 $("#table-data").LoadingOverlay('hide', true);
             }
         },
-        order: [[1, 'desc']],
+        ordering: false,
         columns: [
             {
                 data: 'DT_RowIndex',

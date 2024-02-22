@@ -6,8 +6,8 @@ use App\Model\AsetPoint;
 use App\Model\LocalAsetPoint;
 use App\Model\Pertanahan\PertanahanFoto;
 use App\Model\Pertanahan\PertanahanUpdate;
-use App\Model\Ref\RefKecamatanSijali;
-use App\Model\Ref\RefKelurahanSijali;
+use App\Model\Ref\RefKecamatanSinta;
+use App\Model\Ref\RefKelurahanSinta;
 use App\Model\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,8 +21,8 @@ class PertanahanController extends Controller
 {
     public function index(Request $request)
     {
-        $ref_kec = RefKecamatanSijali::all();
-        $ref_kel = RefKelurahanSijali::all();
+        $ref_kec = RefKecamatanSinta::all();
+        $ref_kel = RefKelurahanSinta::all();
         return view('contents.pertanahan.list', [
             'title' => 'Pertanahan',
             'ref_kec' => $ref_kec,
@@ -34,7 +34,7 @@ class PertanahanController extends Controller
         $kecId = $request->input('kode_kec');
         $kelId = $request->input('kode_kel');
 
-        $list = AsetPoint::on('mysql')->with(['kec', 'kel'])
+        $list = LocalAsetPoint::with(['kec', 'kel'])
             ->when($kecId, function($query) use ($kecId) {
                 if($kecId!='') return $query->where('kec_id', $kecId);
             })
@@ -55,15 +55,19 @@ class PertanahanController extends Controller
 
     public function update(Request $request)
     {
-        $tanah = AsetPoint::on('mysql')->with(['data_update', 'data_foto'])->findOrFail($request->id);
-        $data_update = $tanah->data_update;
-        $data_foto = $tanah->data_foto;
-        return view('contents.pertanahan.update', [
-            'title' => 'Update Pertanahan',
-            'tanah' => $tanah,
-            'data_update' => $data_update,
-            'data_foto' => $data_foto
-        ]);
+        try {
+            $tanah = LocalAsetPoint::with(['data_update', 'data_foto'])->findOrFail($request->id);
+            $data_update = $tanah->data_update;
+            $data_foto = $tanah->data_foto;
+            return view('contents.pertanahan.update', [
+                'title' => 'Update Pertanahan',
+                'tanah' => $tanah,
+                'data_update' => $data_update,
+                'data_foto' => $data_foto
+            ]);
+        } catch (\Throwable $e) {
+            return redirect()->route('pertanahan');
+        }
     }
 
     public function store(Request $request)

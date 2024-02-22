@@ -74,7 +74,7 @@
                             <th>Kelurahan</th>
                             <th>No Sertif</th>
                             <th>Lokasi</th>
-                            <th>Luas</th>
+                            <th>Luas (m<sup>2</sup>)</th>
                             <th style="border-top-right-radius: 8px">Aksi</th>
                         </tr>
                     </thead>
@@ -110,9 +110,7 @@
                             d.kode_kel = $('#filter-kel').val();
                         },
                     },
-                    order: [
-                        [3, "desc"]
-                    ],
+                    ordering: false,
                     columnDefs: [{
                         targets: [0, 2],
                         searchable: false,
@@ -122,10 +120,10 @@
                             data: 'DT_RowIndex',
                         },
                         {
-                            data: 'kecamatan.nama'
+                            data: 'nama_kecamatan'
                         },
                         {
-                            data: 'kelurahan.nama'
+                            data: 'nama_kelurahan'
                         },
                         {
                             data: 'no_sertif'

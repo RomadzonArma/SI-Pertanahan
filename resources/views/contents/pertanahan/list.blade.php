@@ -41,13 +41,13 @@
                         <table class="table table-striped" id="table-data" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th style="width: 5%;">#</th>
+                                    <th style="width: 5%;">No</th>
                                     <th>Penggunaan Sekarang</th>
                                     <th>Penggunaan Sertifikat</th>
                                     <th>Nomor Hak Pakai</th>
                                     <th style="width: 15%;">Kecamatan</th>
                                     <th style="width: 20%;">Kelurahan</th>
-                                    <th>Luas</th>
+                                    <th>Luas (m<sup>2</sup>)</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

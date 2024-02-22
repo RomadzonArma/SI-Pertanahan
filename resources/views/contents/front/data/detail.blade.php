@@ -64,20 +64,20 @@
 
                                     <div class="flex-1 py-1">
                                         <h6 class="text-primary mb-0">Kecamatan :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->kecamatan->nama }}</a>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->kec->nama }}</a>
                                     </div>
                                     <div class="flex-1 py-1">
                                         <h6 class="text-primary mb-0">Kelurahan :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->kelurahan->nama }}</a>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->kel->nama }}</a>
                                     </div>
 
                                     <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Tanggal Sertifikat     :</h6>
+                                        <h6 class="text-primary mb-0">Tanggal Sertifikat :</h6>
                                         <a href="javascript:void(0)" class="text-muted">{{ $list->tgl_sertif}}</a>
                                     </div>
 
                                     <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">No HP     :</h6>
+                                        <h6 class="text-primary mb-0">No HP :</h6>
                                         <a href="javascript:void(0)" class="text-muted">{{ $list->no_hp}}</a>
                                     </div>
                                     <div class="flex-1 py-1">
