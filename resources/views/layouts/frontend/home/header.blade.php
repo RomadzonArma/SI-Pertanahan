@@ -47,7 +47,7 @@
                 <li><a href="{{ route('peta') }}" class="sub-menu-item">Peta</a></li>
                 <li><a href="{{ route('data-tanah') }}" class="sub-menu-item">Data Tanah</a></li>
                 <li><a href="{{ route('data-jalan') }}" class="sub-menu-item">Data Jalan</a></li>
-                <li><a href="{{ route('register-pemohon') }}" class="sub-menu-item">Registrasi</a></li>
+                <!-- <li><a href="{{ route('register-pemohon') }}" class="sub-menu-item">Registrasi</a></li> -->
                 <!-- <li><a href="javascript:void(0)" class="sub-menu-item">Login</a></li> -->
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
