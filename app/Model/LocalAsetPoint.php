@@ -2,24 +2,61 @@
 
 namespace App\Model;
 
-use App\Model\Ref\RefKecamatanSijali;
-use App\Model\Ref\RefKelurahanSijali;
+use App\Model\Ref\RefKecamatanSinta;
+use App\Model\Ref\RefKelurahanSinta;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+// use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LocalAsetPoint extends Model
 {
     use HasFactory;
     protected $table = 'aset_point';
-    public function kecamatan(): BelongsTo
+
+    protected static function booted()
     {
-        return $this->belongsTo(RefKecamatanSijali::class, 'kec_id', 'id_kecamatan');
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('is_active', '=', 1);
+        });
     }
 
-    public function kelurahan(): BelongsTo
+    public function kec()
     {
-        return $this->belongsTo(RefKelurahanSijali::class, 'kel_id', 'id_kelurahan');
+        return $this->belongsTo(RefKecamatanSinta::class, 'kec_id', 'id_kecamatan');
     }
+
+    public function kel()
+    {
+        return $this->belongsTo(RefKelurahanSinta::class, 'kel_id', 'id_kelurahan');
+    }
+
+    // custom soft delete
+    public function delete()
+    {
+        // Check if the model is not already soft deleted
+        if ($this->is_active != 0) {
+            $this->is_active = 0; // Soft delete the model
+            $this->save();
+        }
+    }
+
+    public function restore()
+    {
+        // Check if the model is soft deleted
+        if ($this->is_active == 0) {
+            $this->is_active = 1; // Restore the model
+            $this->save();
+        }
+    }
+
+    public static function onlyTrashed()
+    {
+        return static::withoutGlobalScope('active')->where('is_active', '=', 0);
+    }
+
 }
 

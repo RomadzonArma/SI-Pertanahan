@@ -54,3 +54,7 @@
     <link href="{{ config('app.theme') }}assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css"
         rel="stylesheet" type="text/css">
 @endif
+
+@if (in_array('dropzone', @$plugins))
+    <link href="{{ config('app.theme') }}assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+@endif

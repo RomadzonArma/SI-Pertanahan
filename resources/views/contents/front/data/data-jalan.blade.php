@@ -109,9 +109,7 @@
                         d.kode_kel = $('#filter-kel').val();
                     },
                 },
-                order: [
-                    [3, "desc"]
-                ],
+                ordering: false,
                 columnDefs: [{
                     targets: [0, 2],
                     searchable: false,
