@@ -2,14 +2,15 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 use App\Model\Ref\RefKecamatanSijali;
 use App\Model\Ref\RefKelurahanSijali;
-use App\Model\Jalan\JalanLingkunganUpdate;
+use Illuminate\Database\Eloquent\Model;
+
 use App\Model\Jalan\JalanLingkunganFoto;
+use App\Model\Jalan\JalanLingkunganUpdate;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LocalJalanLingkungan extends Model
 {
@@ -37,5 +38,9 @@ class LocalJalanLingkungan extends Model
     public function data_foto()
     {
         return $this->hasMany(JalanLingkunganFoto::class, 'jalan_lingkungan_id');
+    }
+    public function jalan(): HasMany
+    {
+        return $this->hasMany(LocalJalanLingkunganCoord::class, 'FID', 'FID');
     }
 }

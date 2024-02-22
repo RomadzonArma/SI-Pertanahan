@@ -24,6 +24,10 @@
     <!-- Sweet Alerts js -->
     <script src="{{ config('app.theme') }}assets/libs/sweetalert2/sweetalert2.min.js?q={{ Str::random(5) }}"></script>
 @endif
+
+@if (in_array('select2', $plugins))
+    <script src="{{ config('app.theme') }}assets/libs/select2/js/select2.min.js?q={{ Str::random(5) }}"></script>
+@endif
 @stack('scripts')
 
 

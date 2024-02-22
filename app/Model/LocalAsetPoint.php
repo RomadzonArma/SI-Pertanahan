@@ -23,3 +23,4 @@ class LocalAsetPoint extends Model
     }
 
 }
+
