@@ -14,7 +14,7 @@
                 <div class="col-lg-12 text-center mt-0 pt-0">
                     <div class="title-heading">
                         <h2 class="title text-white title-dark m-0 p-0 text-uppercase">
-                            Data Jalan
+                           {{ $title}}
                         </h2>
                     </div>
                 </div>

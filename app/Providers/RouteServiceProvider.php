@@ -57,6 +57,7 @@ class RouteServiceProvider extends ServiceProvider
 
             $this->mapDataAsetRoutes();
             $this->mapJalanLingkunganRoutes();
+            $this->mapCustomFrontRoutes();
         });
     }
 
@@ -127,5 +128,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('jalan-lingkungan')
             ->group(base_path('routes/panel/jalan-lingkungan.php'));
+    }
+    protected function mapCustomFrontRoutes()
+    {
+        Route::prefix('custom-front')
+            ->group(base_path('routes/panel/custom-front.php'));
     }
 }

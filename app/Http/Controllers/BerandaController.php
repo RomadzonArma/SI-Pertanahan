@@ -38,7 +38,7 @@ class BerandaController extends Controller
         $ref_kec = RefKecamatanSijali::all();
         $ref_kel = RefKelurahanSijali::all();
         return view('contents.front.data.index', [
-            'title' => 'Data',
+            'title' => 'Data Tanah',
             'ref_kec' => $ref_kec,
             'ref_kel' => $ref_kel
         ]);
@@ -108,14 +108,7 @@ class BerandaController extends Controller
             ->addIndexColumn()
             ->make(true);
     }
-    // public function showJalan($id)
-    // {
-    //     $list = LocalJalanLingkungan::with('kec','kel')->find($id);
-    //     return view('contents.front.data.detail-jalan', [
-    //         'title' => 'Data Jalan | Detail',
-    //         'list' => $list,
-    //     ]);
-    // }
+
     public function showJalan($id)
     {
         $list = LocalJalanLingkungan::with('kec', 'kel')
@@ -139,4 +132,5 @@ class BerandaController extends Controller
             'list' => $list,
         ]);
     }
+
 }

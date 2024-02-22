@@ -10,7 +10,7 @@
                 <div class="col-lg-12 text-center mt-0 pt-0">
                     <div class="title-heading">
                         <h2 class="title text-white title-dark m-0 p-0 text-uppercase">
-                            Detail Tanah
+                            {{ $title }}
                         </h2>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                 <nav aria-label="breadcrumb" class="d-inline-block">
                     <ul class="breadcrumb rounded shadow mb-0 px-4 py-2">
                         <li class="breadcrumb-item"><a href="{{ route('/') }}">Beranda</a></li>
-                         <li class="breadcrumb-item"><a href="{{ route('data-tanah')}}">Data Tanah</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('data-tanah') }}">Data Tanah</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Detail Tanah</li>
                     </ul>
                 </nav>
@@ -54,7 +54,6 @@
                     <div class="row p-0 m-0">
                         <div class="col-12  p-0 m-0">
 
-
                             <div class="row">
                                 <div class="col-6 p-0 m-0">
                                     <div class="flex-1 py-1">
@@ -72,13 +71,13 @@
                                     </div>
 
                                     <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Tanggal Sertifikat     :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->tgl_sertif}}</a>
+                                        <h6 class="text-primary mb-0">Tanggal Sertifikat :</h6>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->tgl_sertif }}</a>
                                     </div>
 
                                     <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">No HP     :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->no_hp}}</a>
+                                        <h6 class="text-primary mb-0">No HP :</h6>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->no_hp }}</a>
                                     </div>
                                     <div class="flex-1 py-1">
                                         <h6 class="text-primary mb-0">Luas m<sup>2</sup> Per Bagian :</h6>
@@ -88,45 +87,56 @@
                                 </div>
                                 <div class="col-6 p-0 m-0">
 
+                                    <div class="flex-1 py-1">
+                                        <h6 class="text-primary mb-0">Penggunaan Sekarang :</h6>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->pengg_seka }}</a>
+                                    </div>
 
-
-                                <div class="flex-1 py-1">
-                                    <h6 class="text-primary mb-0">Penggunaan Sekarang :</h6>
-                                    <a href="javascript:void(0)" class="text-muted">{{ $list->pengg_seka }}</a>
+                                    <div class="flex-1 py-1">
+                                        <h6 class="text-primary mb-0">Pengguna Sertifikat :</h6>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->pengg_sertif }}</a>
+                                    </div>
+                                    <div class="flex-1 py-1">
+                                        <h6 class="text-primary mb-0">Longitude & Latitude :</h6>
+                                        <a href="javascript:void(0)" class="text-muted">{{ $list->lat }} |
+                                            {{ $list->lng }}</a>
+                                    </div>
+                                    <div class="flex-1 py-1">
+                                        <h6 class="text-primary mb-0">Foto :</h6>
+                                        <img src="{{ asset('storage/foto/' . $list->foto) }}" alt="Foto" width="300px">
+                                    </div>
+                                    <div class="flex-1 py-1">
+                                        <h6 class="text-primary mb-0">Foto Survei :</h6>
+                                        <img src="{{ asset('storage/foto-survei/' . $list->foto_survei) }}" alt="Foto Survei"
+                                            width="300px">
+                                    </div>
                                 </div>
-
-                                <div class="flex-1 py-1">
-                                    <h6 class="text-primary mb-0">Pengguna Sertifikat :</h6>
-                                    <a href="javascript:void(0)" class="text-muted">{{ $list->pengg_sertif}}</a>
-                                </div>
-                                <div class="flex-1 py-1">
-                                    <h6 class="text-primary mb-0">Longitude & Latitude :</h6>
-                                    <a href="javascript:void(0)" class="text-muted">{{ $list->lat }} |
-                                        {{ $list->lng }}</a>
-                                </div>
-                                <div class="flex-1 py-1">
-                                    <h6 class="text-primary mb-0">Foto :</h6>
-                                    <img src="{{ asset('storage/foto/'.$list->foto)  }}" alt="Foto" width="300px">
-                                </div>
-                                <div class="flex-1 py-1">
-                                    <h6 class="text-primary mb-0">Foto Survei :</h6>
-                                    <img src="{{ asset('storage/foto-survei/'.$list->foto_survei)  }}" alt="Foto Survei"  width="300px">
-                                </div>
-                                </div>
-                                {{-- <div class="flex-1 py-1">
-                                <h6 class="text-primary mb-0">Keterangan :</h6>
-                                <a href="javascript:void(0)" class="text-muted">{{ $list->pengg_seka}}</a>
-                            </div> --}}
-
-                                <!-- <a href="tanah-lahan-detail.html" class="btn btn-primary btn-md flex-grow-1">Lihat
-                                                    Sertifikat</a> -->
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row mt-3 p-0 m-0">
+                <div id="map"></div>
+            </div>
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <!-- Leaflet JS -->
+    <script src="{{ asset('assets\libs\leaflet\leaflet.js') }}"></script>
+    <script>
+        var map = L.map('map').setView([{{ $list->lat }}, {{ $list->lng }}], 20);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(map);
+
+        // Add marker for Koor_Ujg_X and Koor_Ujg_Y
+        L.marker([{{ $list->lat }}, {{ $list->lng }}]).addTo(map)
+            .bindPopup('Coordinate: {{ $list->Koor_Ujg_Y }}, {{ $list->Koor_Ujg_X }}');
+
+    </script>
+@endpush
+

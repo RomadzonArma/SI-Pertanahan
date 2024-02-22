@@ -1,5 +1,7 @@
 @extends('layouts.frontend.home.home')
-
+@php
+    $plugins = ['leaflet'];
+@endphp
 
 @section('contents')
     <section class="bg-home bg-primary d-flex align-items-center"
@@ -10,7 +12,7 @@
                 <div class="col-lg-12 text-center mt-0 pt-0">
                     <div class="title-heading">
                         <h2 class="title text-white title-dark m-0 p-0 text-uppercase">
-                            Detail Jalan
+                            {{ $title}}
                         </h2>
                     </div>
                 </div>
@@ -23,7 +25,8 @@
                     <ul class="breadcrumb rounded shadow mb-0 px-4 py-2">
                         <li class="breadcrumb-item"><a href="{{ route('/') }}">Beranda</a></li>
                         <!-- <li class="breadcrumb-item"><a href="#">Menu</a></li> -->
-                        <li class="breadcrumb-item" aria-current="page"><a href="{{ route('data-jalan') }}">Beranda</a>Data Jalan</li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="{{ route('data-jalan') }}"></a>Data
+                            Jalan</li>
                         <li class="breadcrumb-item active" aria-current="page">Detail Jalan</li>
                     </ul>
                 </nav>
@@ -56,6 +59,7 @@
                         <div class="col-12 p-0 m-0">
                             <div class="row">
                                 <div class="col-lg-6">
+
                                     <div class="flex-1 py-1">
                                         <h6 class="text-primary mb-0">Tahun :</h6>
                                         <a href="javascript:void(0)" class="text-muted">{{ $list->Tahun }}</a>
@@ -81,105 +85,57 @@
                                     <div class="flex-1 py-1">
                                         <h6 class="text-primary mb-0"> Jalan :</h6>
                                         <a href="javascript:void(0)" class="text-muted">
-                                            <p><span class="d-inline-block" style="width: 200px">Kategori</span> : {{ $list->Kategori }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Panjang Jalan</span> : {{ $list->Pjg_Jln }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Lebar Jalan</span> : {{ $list->Lbr_Perk }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Lebar Bahu Jalan Kanan</span> : {{ $list->L_Bh_Kn }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Lebar Bahu Jalan Kiri</span> : {{ $list->L_Bh_Kr }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Jenis</span> : {{ $list->Jenis_Perk }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Panjang Perk</span> : {{ $list->Panjang_Perkerasan }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 2px">Kategori</span> :
+                                                {{ $list->Kategori }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 2px">Panjang Jalan</span> :
+                                                {{ $list->Pjg_Jln }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 1%">Lebar Jalan</span> :
+                                                {{ $list->Lbr_Perk }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 1%">Lebar Bahu Jalan
+                                                    Kanan</span> : {{ $list->L_Bh_Kn }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 1%">Lebar Bahu Jalan
+                                                    Kiri</span> : {{ $list->L_Bh_Kr }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 1%">Jenis</span> :
+                                                {{ $list->Jenis_Perk }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px; margin-top: 1%">Panjang Perk</span> :
+                                                {{ $list->Panjang_Perkerasan }}</p>
                                         </a>
                                     </div>
-                                    {{-- <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0"> :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Kategori }}</a>
-                                    </div>
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Panjang Jalan :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Pjg_Jln }} m</a>
-                                    </div>
-
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Lebar Jalan :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Lbr_Perk }} m</a>
-                                    </div>
-
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0"> :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->L_Bh_Kn }} m</a>
-                                    </div>
-
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0"> :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->L_Bh_Kr }} m</a>
-                                    </div>
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Jenis :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Jenis_Perk }}</a>
-                                    </div>
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Lebar Perk :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Panjang_Perkerasan }}</a>
-                                    </div>
-
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Drainase Kanan :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Pjg_Drn_Kn }}x{{ $list->Lbr_Drn_Kn}}</a>
-                                    </div> --}}
 
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Drainase Kiri  :</h6>
+                                        <h6 class="text-primary mb-0">Drainase Kiri :</h6>
                                         <a href="javascript:void(0)" class="text-muted">
-                                            <p><span class="d-inline-block" style="width: 200px">Jenis</span> : {{ $list->Jen_Drn_Kr }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Panjang</span> : {{ $list->Pjg_Drn_Kr }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Lebar</span> : {{ $list->Lbr_Drn_Kr }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Kondisi</span> : {{ $list->Knd_Drn_Kr }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Tip Drainase</span> : {{ $list->Tip_Drn_Kr }}</p>
-                                        </a>
-                                    </div>
-
-
-
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Drainase Kanan  :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">
-                                            <p><span class="d-inline-block" style="width: 200px">Jenis</span> : {{ $list->Jen_Drn_Kn }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Panjang</span> : {{ $list->Pjg_Drn_Kn }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Lebar</span> : {{ $list->Lbr_Drn_Kn }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Kondisi</span> : {{ $list->Knd_Drn_Kn }}</p>
-                                            <p><span class="d-inline-block" style="width: 200px">Tip Drainase</span> : {{ $list->Tip_Drn_Kn }}</p>
-
+                                            <p><span class="d-inline-block" style="width: 200px">Jenis</span> :
+                                                {{ $list->Jen_Drn_Kr }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Panjang</span> :
+                                                {{ $list->Pjg_Drn_Kr }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Lebar</span> :
+                                                {{ $list->Lbr_Drn_Kr }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Kondisi</span> :
+                                                {{ $list->Knd_Drn_Kr }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Tip Drainase</span> :
+                                                {{ $list->Tip_Drn_Kr }}</p>
                                         </a>
                                     </div>
 
                                     <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Koordinat :</h6>
+                                        <h6 class="text-primary mb-0">Drainase Kanan :</h6>
                                         <a href="javascript:void(0)" class="text-muted">
-                                        <p><span class="d-inline-block" style="width: 200px">Koordinat Ujung X</span> : {{ $list->Koor_Ujg_X }}</p>
-                                        <p><span class="d-inline-block" style="width: 200px">Koordinat Ujung Y</span> : {{ $list->Koor_Ujg_Y }}</p>
-                                        <p><span class="d-inline-block" style="width: 200px">Koordinat PKL X</span> : {{ $list->Koor_Pkl_X }}</p>
-                                        <p><span class="d-inline-block" style="width: 200px">Koordinat PKL Y</span> : {{ $list->Koor_Pkl_Y }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Jenis</span> :
+                                                {{ $list->Jen_Drn_Kn }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Panjang</span> :
+                                                {{ $list->Pjg_Drn_Kn }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Lebar</span> :
+                                                {{ $list->Lbr_Drn_Kn }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Kondisi</span> :
+                                                {{ $list->Knd_Drn_Kn }}</p>
+                                            <p><span class="d-inline-block" style="width: 200px">Tip Drainase</span> :
+                                                {{ $list->Tip_Drn_Kn }}</p>
+
                                         </a>
                                     </div>
-                                    {{-- <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0"> :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Koor_Ujg_X }}</a>
-                                    </div>
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Koordinat Ujung Y :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Koor_Ujg_Y }}</a>
-                                    </div>
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Koordinat PKL X :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Koor_Pkl_X }}</a>
-                                    </div>
-                                    <div class="flex-1 py-1">
-                                        <h6 class="text-primary mb-0">Koordinat PKL Y :</h6>
-                                        <a href="javascript:void(0)" class="text-muted">{{ $list->Koor_Pkl_Y }}</a>
-                                    </div> --}}
-
                                 </div>
                             </div>
 
@@ -188,7 +144,31 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row mt-3 p-0 m-0">
+                <div id="map"></div>
+            </div>
         </div>
         </div>
     </section>
 @endsection
+
+
+@push('scripts')
+    <!-- Leaflet JS -->
+    <script src="{{ asset('assets\libs\leaflet\leaflet.js') }}"></script>
+    <script>
+        var map = L.map('map').setView([{{ $list->Koor_Ujg_Y }}, {{ $list->Koor_Ujg_X }}], 20);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(map);
+
+        // Add marker for Koor_Ujg_X and Koor_Ujg_Y
+        L.marker([{{ $list->Koor_Ujg_Y }}, {{ $list->Koor_Ujg_X }}]).addTo(map)
+            .bindPopup('Coordinate: {{ $list->Koor_Ujg_Y }}, {{ $list->Koor_Ujg_X }}');
+
+        L.marker([{{ $list->Koor_Pkl_Y }}, {{ $list->Koor_Pkl_X }}]).addTo(map)
+            .bindPopup('Coordinate (Pokok): {{ $list->Koor_Pkl_Y }}, {{ $list->Koor_Pkl_X }}');
+    </script>
+@endpush

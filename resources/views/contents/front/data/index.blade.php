@@ -13,7 +13,7 @@
                     <div class="col-lg-12 text-center mt-0 pt-0">
                         <div class="title-heading">
                             <h2 class="title text-white title-dark m-0 p-0 text-uppercase">
-                                Data Tanah
+                                {{ $title}}
                             </h2>
                         </div>
                     </div>
@@ -47,8 +47,8 @@
             <div class="container">
                 <div class="col-6">
 
-                    <div class="row p-2">
-                        <div class="col-4 form-group">
+                    <div class="row ">
+                        <div class="col-6 form-group">
                             <label for="filter-kec">Kecamatan</label>
                             <select class="form-control" id="filter-kec">
                                 <option value="">Semua Kecamatan</option>
