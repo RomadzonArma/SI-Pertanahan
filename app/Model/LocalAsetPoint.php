@@ -2,10 +2,11 @@
 
 namespace App\Model;
 
-use App\Model\Ref\RefKecamatanSijali;
-use App\Model\Ref\RefKelurahanSijali;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use App\Model\Ref\RefKecamatanSijali;
+use App\Model\Ref\RefKelurahanSijali;
 
 class LocalAsetPoint extends Model
 {
