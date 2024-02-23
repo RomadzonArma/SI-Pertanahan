@@ -11,9 +11,9 @@
                 <div class="col-lg-12 text-center mt-0 pt-0">
                     <div class="title-heading">
                         <!-- <span class="badge rounded-pill bg-success">Integration</span> -->
-                        <h4 class="heading text-white title-dark m-0 p-0 text-uppercase">{{$list->judul}}
+                        <h4 class="heading text-white title-dark m-0 p-0 text-uppercase">{{$list->judul ?? 'DISPERUMKIMTAN KOTA SURAKARTA'}}
                         </h4>
-                        <p class="mx-auto text-white">{{$list->title_header}}
+                        <p class="mx-auto text-white">{{$list->title_header ?? 'Proda Online dan Sistem Informasi Utilitas Pertanahan'}}
                         </p>
                     </div>
 

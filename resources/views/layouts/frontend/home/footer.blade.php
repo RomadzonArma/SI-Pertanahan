@@ -14,7 +14,7 @@
                                 {{-- <img src="{{ asset('logo-footer/' . $list->logo_header) }}" height="72" alt=""> --}}
                                 <img src="{{ asset('img/logo-sip-surakarta.png') }}" height="72" alt="">
                             </a>
-                            <p class="mt-4 text-white">{{$list->footer}}</p>
+                            <p class="mt-4 text-white">{{$list->footer ?? 'Aplikasi ini pengelola data utilitas Tanah HP (Hak Pakai) Kota Surakarta dan pengelola pengajuan tanah PRODA (Proyek Operasi Daerah Agreria) berbasis online yang dilakukan oleh DISPERUM KPP'}}</p>
                         </div>
 
                         <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2">
@@ -29,9 +29,9 @@
 
                         <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2 text-white">
                             <h5 class="footer-head">Kontak</h5>
-                            <p class="mt-1">{{$list->alamat}}</p>
-                            <p class="mt-2">{{$list->email}}</p>
-                            <p class="mt-2">{{$list->telp}}</p>
+                            <p class="mt-1">{{$list->alamat ?? 'jl.jend. Sudirman No.02, Kp. baru, Kec. Ps. Kliwon, Kota Surakarta, Jawa Tengah, 57133'}}</p>
+                            <p class="mt-2">{{$list->email ?? 'disperumkpp@gmail.com'}}</p>
+                            <p class="mt-2">{{$list->telp ?? '(0271) 64202021'}}</p>
                         </div>
 
                     </div><!--end row-->
