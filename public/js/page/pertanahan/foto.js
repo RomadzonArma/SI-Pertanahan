@@ -69,11 +69,9 @@ const load_table_foto = () =>{
                 }
             }, {
                 data: 'created_at',
-                render: function(data) {
-                    var date = new Date(data);
-                    var formattedDate = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear();
-                    var formattedTime = ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + ('0' + date.getSeconds()).slice(-2);
-                    return formattedDate + ' pukul ' + formattedTime;
+                render: (data, type, row)=>{
+                    if(data!=null) return moment(data).format('DD MMM YYYY, HH:mm:ss');
+                    else return '';
                 }
             }, {
                 data: 'id',

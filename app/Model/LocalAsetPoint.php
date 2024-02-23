@@ -8,6 +8,8 @@ use App\Model\Ref\RefKelurahanSinta;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Model\Pertanahan\PertanahanFoto;
+use App\Model\Pertanahan\PertanahanUpdate;
 // use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,6 +34,16 @@ class LocalAsetPoint extends Model
     public function kel()
     {
         return $this->belongsTo(RefKelurahanSinta::class, 'kel_id', 'id_kelurahan');
+    }
+
+    public function data_update()
+    {
+        return $this->hasOne(PertanahanUpdate::class, 'aset_point_id');
+    }
+
+    public function data_foto()
+    {
+        return $this->hasMany(PertanahanFoto::class, 'aset_point_id');
     }
 
     // custom soft delete

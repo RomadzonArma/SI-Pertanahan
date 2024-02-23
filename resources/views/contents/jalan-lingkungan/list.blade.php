@@ -112,6 +112,8 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('assets/libs/moment/min/moment.min.js?q=' . Str::random(5)) }}"></script>
+    <script src="{{ asset('assets/libs/moment/locale/id.js?q=' . Str::random(5)) }}"></script>
     <script>
         window.ref_kec = <?= json_encode($ref_kec); ?>;
         window.ref_kel = <?= json_encode($ref_kel); ?>;

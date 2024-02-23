@@ -68,7 +68,11 @@ const load_table_foto = () =>{
                     }).prop('outerHTML');
                 }
             }, {
-                data: 'created_at'
+                data: 'created_at',
+                render: (data, type, row)=>{
+                    if(data!=null) return moment(data).format('DD MMM YYYY, HH:mm:ss');
+                    else return '';
+                }
             }, {
                 data: 'id',
                 render: (data, type, row) => {
