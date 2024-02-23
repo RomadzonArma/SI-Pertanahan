@@ -1,4 +1,5 @@
 <!-- Footer Start -->
+
 <footer class="footer bg-primary"
     style="background: url('https://static.republika.co.id/uploads/images/xlarge/kompleks-masjid-agung-kesunanan-surakarta-di-solo-jawa-tengah_210731203302-106.jpeg') center center; background-repeat: no-repeat; background-size: cover;">
     <div class="bg-overlay" style="border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;"></div>
@@ -7,14 +8,13 @@
             <div class="col-12">
                 <div class="footer-py-60 footer-border">
                     <div class="row">
+
                         <div class="col-lg-12 col-12 mb-0 mb-md-6 px-md-4 pb-0 pb-md-2 pt-sm-0 p-0 m-0">
                             <a href="#" class="logo-footer">
+                                {{-- <img src="{{ asset('logo-footer/' . $list->logo_header) }}" height="72" alt=""> --}}
                                 <img src="{{ asset('img/logo-sip-surakarta.png') }}" height="72" alt="">
                             </a>
-                            <p class="mt-4 text-white">Aplikasi ini pengelola data utilitas Tanah HP (Hak Pakai)
-                                Kota Surakarta
-                                dan pengelola pengajuan tanah PRODA (Proyek Operasi Daerah Agreria) berbasis online
-                                yang dilakukan oleh DISPERUM KPP </p>
+                            <p class="mt-4 text-white">{{$list->footer}}</p>
                         </div>
 
                         <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2">
@@ -29,11 +29,9 @@
 
                         <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2 text-white">
                             <h5 class="footer-head">Kontak</h5>
-                            <p class="mt-1">jl.jend. Sudirman No.02, Kp. baru, Kec. Ps. Kliwon, Kota Surakarta,
-                                Jawa
-                                Tengah, 57133 </p>
-                            <p class="mt-2">disperumkpp@gmail.com</p>
-                            <p class="mt-2">(0271) 64202021</p>
+                            <p class="mt-1">{{$list->alamat}}</p>
+                            <p class="mt-2">{{$list->email}}</p>
+                            <p class="mt-2">{{$list->telp}}</p>
                         </div>
 
                     </div><!--end row-->

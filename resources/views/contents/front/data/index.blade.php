@@ -47,8 +47,8 @@
             <div class="container">
                 <div class="col-6">
 
-                    <div class="row ">
-                        <div class="col-6 form-group">
+                    <div class="row p-2">
+                        <div class="col-4 form-group">
                             <label for="filter-kec">Kecamatan</label>
                             <select class="form-control" id="filter-kec">
                                 <option value="">Semua Kecamatan</option>

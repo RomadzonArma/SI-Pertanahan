@@ -14,6 +14,7 @@ use App\Model\LocalJalanLingkungan;
 use App\Model\Ref\RefKecamatanSijali;
 use App\Model\Ref\RefKelurahanSijali;
 use App\Model\AsetPoint;
+use App\Model\CustomFront;
 use App\Model\LocalAsetPoint;
 use App\Model\Ref\RefKecamatanSinta;
 use App\Model\Ref\RefKelurahanSinta;
@@ -23,8 +24,10 @@ class BerandaController extends Controller
     public function index()
     {
         // return view('contents.front.home._home');
+        $list = CustomFront::first();
         return view('contents.front.home.home', [
-            'title' => 'Sistem Informasi Pertanahan Surakarta'
+            'title' => 'Sistem Informasi Pertanahan Surakarta',
+            'list' => $list,
         ]);
     }
 

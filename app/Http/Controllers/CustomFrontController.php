@@ -9,115 +9,67 @@ use Yajra\DataTables\Contracts\DataTable;
 
 class CustomFrontController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $list = CustomFront::all();
-        return view('contents.custom-front.index',[
+        $list = CustomFront::first();
+        return view('contents.custom-front.index', [
             'title' => 'Custom Front',
             'list'  => $list
         ]);
     }
-    public function data(Request $request)
+
+    public function show()
     {
-        $list = CustomFront::all();
-        return DataTables::of($list)
-        ->addIndexColumn()
-        ->make(true);
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return CustomFront::first();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request)
     {
-        $request->validate([
-            'judul' => 'required',
-            'title_header' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
-            'telp' => 'required',
-        ]);
 
-        try{
-            $logoHeaderPath = $request->file('logo_header')->store('custom_fronts');
-            $logoFooterPath = $request->file('logo_footer')->store('custom_fronts');
+        try {
+            $customFront = CustomFront::first();
 
-            // Simpan data ke database
-            $customFront = CustomFront::create([
-                'judul' => $request->judul,
-                'title_header' => $request->title_header,
-                'alamat' => $request->alamat,
-                'email' => $request->email,
-                'telp' => $request->telp,
-                'logo_header' => $logoHeaderPath,
-                'logo_footer' => $logoFooterPath,
+            $logoHeaderPath = $customFront->logo_header;
+            $logoFooterPath = $customFront->logo_footer;
+
+            if ($request->hasFile('logo_header')) {
+                // Remove existing file
+                if (!empty($logoHeaderPath) && file_exists(public_path('logo-header') . '/' . $logoHeaderPath)) {
+                    unlink(public_path('logo-header') . '/' . $logoHeaderPath);
+                }
+
+                // Upload new file
+                $logoHeaderPath = time() . '.' . $request->logo_header->extension();
+                $request->logo_header->move(public_path('logo-header'), $logoHeaderPath);
+            }
+
+            if ($request->hasFile('logo_footer')) {
+                // Remove existing file
+                if (!empty($logoFooterPath) && file_exists(public_path('logo-footer') . '/' . $logoFooterPath)) {
+                    unlink(public_path('logo-footer') . '/' . $logoFooterPath);
+                }
+
+                // Upload new file
+                $logoFooterPath = time() . '.' . $request->logo_footer->extension();
+                $request->logo_footer->move(public_path('logo-footer'), $logoFooterPath);
+            }
+
+            // Update data in the database
+            $customFront->update([
+                'judul'         => $request->judul,
+                'title_header'  => $request->title_header,
+                'alamat'        => $request->alamat,
+                'email'         => $request->email,
+                'telp'          => $request->telp,
+                'footer'        => $request->footer,
+                'logo_header'   => $logoHeaderPath,
+                'logo_footer'   => $logoFooterPath,
             ]);
-            return response()->json(['status' => true], 200);
-        }catch (\Exception $e){
+
+            return response()->json('Data berhasil disimpan', 200);
+        } catch (\Exception $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
         }
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

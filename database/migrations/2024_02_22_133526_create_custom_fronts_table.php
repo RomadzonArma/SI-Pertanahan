@@ -20,8 +20,9 @@ class CreateCustomFrontsTable extends Migration
             $table->text('alamat');
             $table->string('email');
             $table->string('telp');
-            $table->string('logo_header');
-            $table->string('logo_footer');
+            $table->text('footer');
+            $table->string('logo_header')->nullable();
+            $table->string('logo_footer')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

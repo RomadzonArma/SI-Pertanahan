@@ -11,7 +11,7 @@ class CustomFront extends Model
     use HasFactory, SoftDeletes;
     protected $table="custom_fronts";
     protected $fillable = [
-        'id', 'judul','title_header','alamat','email','telp','logo_header','logo_footer',
+        'id', 'judul','title_header','alamat','email','telp','footer','logo_header','logo_footer',
     ];
 }
 

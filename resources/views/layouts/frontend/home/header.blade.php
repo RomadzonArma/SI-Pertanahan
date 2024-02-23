@@ -1,13 +1,17 @@
 <!-- Navbar Start -->
+
 <header id="topnav" class="defaultscroll sticky">
     <div class="container">
         <!-- Logo container-->
         <a class="logo p-2" href="{{ route('/') }}">
             <span class="logo-light-mode">
+
                 <img src="{{ asset('img/logo-sip-surakarta-dark.png') }}" class="l-dark" height="60" alt="">
+                {{-- <img src="{{ asset('logo-header/' . $list->logo_footer) }}" class="l-dark" height="60" alt=""> --}}
+                {{-- <img src="{{ asset('logo-header/' . $list->logo_header) }}" class="l-light" height="60" alt=""> --}}
                 <img src="{{ asset('img/logo-sip-surakarta.png') }}" class="l-light" height="60" alt="">
             </span>
-            <img src="{{ asset('img/logo-sip-surakarta.png') }}" height="24" class="logo-dark-mode" alt="">
+            {{-- <img src="{{ asset('logo-header/' . $list->logo_header) }}" height="24" class="logo-dark-mode" alt=""> --}}
         </a>
 
         <!-- End Logo container-->
