@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+
 use App\Model\AsetPoint;
 use App\Model\LocalAsetPoint;
 use App\Model\Pertanahan\PertanahanFoto;
 use App\Model\Pertanahan\PertanahanUpdate;
 use App\Model\Ref\RefKecamatanSinta;
 use App\Model\Ref\RefKelurahanSinta;
-use App\Model\Role;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
-use Yajra\DataTables\Facades\DataTables;
 
 class PertanahanController extends Controller
 {
@@ -107,27 +113,6 @@ class PertanahanController extends Controller
                     ]
                 );
             }
-
-            // if ($request->hasFile('foto')) {
-            //     $fotoPaths = [];
-
-            //     foreach ($request->file('foto') as $foto) {
-            //         $destinationPath = 'uploads/tanah/' . $request->aset_point_id . '/foto';
-
-            //         if (!file_exists(public_path($destinationPath))) {
-            //             mkdir(public_path($destinationPath), 0777, true);
-            //         }
-
-            //         $filename = time() . '_' . $foto->getClientOriginalName();
-            //         $foto->move(public_path($destinationPath), $filename);
-            //         $file_path = $destinationPath . '/' . $filename;
-            //         $fotoPaths[] = $file_path;
-            //         PertanahanFoto::create([
-            //             'aset_point_id' => $request->aset_point_id,
-            //             'foto_file' => $file_path,
-            //         ]);
-            //     }
-            // }
             return response()->json(['status' => true, 'msg' => 'Data tanah telah diperbarui'], 200);
         } catch (\Throwable $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
@@ -137,7 +122,7 @@ class PertanahanController extends Controller
     public function foto(Request $request)
     {
         try {
-            $tanah = AsetPoint::on('mysql')->with(['data_foto'])->findOrFail($request->id);
+            $tanah = LocalAsetPoint::with(['data_foto'])->findOrFail($request->id);
             return response()->json(['status' => true, 'msg' => 'Data foto', 'data' => $tanah], 200);
         } catch (\Throwable $e) {
             return response()->json(['status' => false, 'msg' => $e->getMessage()], 400);
