@@ -1,0 +1,646 @@
+    
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+<title>Aplikasi Database Pemakaman</title>
+<link rel="icon" href="assets/images/custom/logo-solo-sq.png">
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="assets/fontawesome/css/all.css">
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="assets/peta/leaflet/css/leaflet.css">
+
+<link rel="stylesheet" href="assets/peta/css/peta.css">
+</head>
+<!-- <body style="overflow-y: hidden;"> -->
+<body style="">
+    <header id="main-header" class="header-one head-cust-peta">
+      <nav id="menu-1" class="mega-menu-cust max-w-100" data-color="">
+         <div class="menu-list-items-cust">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <ul class="menu-logo-cust">
+                        <li>
+                           <a href="index.html">
+                               <div class="bg-logo-utama hide-mobile"></div>
+                           <img src="assets/images/custom/logo-txt-light-sm.png" alt="logo" class="img-fluid hide-mobile">
+                           <img src="assets/images/custom/logo-txt-light-sm.png" alt="logo" class="img-fluid hide-pc">
+                        </a>
+                        </li>
+                     </ul>
+                     <ul class="menu-search-bar-cust active float-right w-auto r-0">
+                        <a href="index.html">
+                            <i class="fa fa-home facustoms"></i>
+                        </a>
+                        <a href="javascript:void(0)"><i class="fas fa-search-plus facustoms"></i></a>
+                        <a href="javascript:void(0)"><i class="fas fa-search-minus facustoms"></i></a>
+                        <a href="javascript:void(0)" id="click-search"><i class="fas fa-search facustoms"></i></a>
+                        <a href="javascript:void(0)" id="click-infolayers"><i class="fas fa-info-circle facustoms"></i></a>
+                        <a href="javascript:void(0)" id="click-layers"><i class="fas fa-layer-group facustoms"></i></a>
+                        <a href="javascript:void(0)" id="click-basemap"><i class="fas fa-globe facustoms"></i></a>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </nav>
+   </header>
+
+    <div class="div-search hide">
+        <div class="judul-div-peta">Pencarian</div>
+        <div class="isi-div-peta o-y-scroll" id="style-3">
+            <form class="shipping-calculator" action="#" method="post">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <a href="javascript:void(0)" class="btn d-block btn-success btn-outline btn-rounded font-weight-bold w-100 text-center" type="button">
+                            TERAPKAN
+                        </a>
+                    </div>
+                </div>
+            </form>	
+        </div>
+    </div>
+
+    <div class="div-infolayers hide">
+        <div class="judul-div-peta">Info Layers</div>
+        <div class="isi-div-peta o-y-scroll" id="style-3">
+            <form class="shipping-calculator" action="#" method="post">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <div class="custom-select-1">
+                            <select class="form-control bg-light-5 text-color-dark border-0" aria-label="Choose a country" required>
+                                <option value="">Pilih filter</option>
+                                <option value="AX">Åland Islands</option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AI">Anguilla</option>
+                                <option value="AQ">Antarctica</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AW">Aruba</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <a href="javascript:void(0)" class="btn d-block btn-success btn-outline btn-rounded font-weight-bold w-100 text-center" type="button">
+                            TERAPKAN
+                        </a>
+                    </div>
+                </div>
+            </form>	
+        </div>
+    </div>
+
+    <div class="div-layers hide">
+        <div class="judul-div-peta">Layers</div>
+        <div class="isi-div-peta o-y-scroll" id="style-3">
+            
+            <div id="accordionMinimal" class="accordion accordion-minimal" role="tablist">
+
+                <div class="card">
+                    <div class="card-header accordion-header" role="tab" id="accordionMinimal1">
+                        <h5 class="mb-0">
+                            <a href="#" data-toggle="collapse" data-target="#accordionMinimalCollapse1" aria-expanded="false" aria-controls="accordionMinimalCollapse1">Our Portfolio</a>
+                        </h5>
+                    </div>
+                    <div id="accordionMinimalCollapse1" class="collapse show" role="tabpanel" aria-labelledby="accordionMinimal1" data-parent="#accordionMinimal">
+                        <div class="card-body">
+                            <p class="mb-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header accordion-header" role="tab" id="accordionMinimal2">
+                        <h5 class="mb-0">
+                            <a href="#" class="collapsed" data-toggle="collapse" data-target="#accordionMinimalCollapse2" aria-expanded="false" aria-controls="accordionMinimalCollapse2">Our Process</a>
+                        </h5>
+                    </div>
+                    <div id="accordionMinimalCollapse2" class="collapse" role="tabpanel" aria-labelledby="accordionMinimal2" data-parent="#accordionMinimal">
+                        <div class="card-body">
+                            <p class="mb-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header accordion-header" role="tab" id="accordionMinimal3">
+                        <h5 class="mb-0">
+                            <a href="#" class="collapsed" data-toggle="collapse" data-target="#accordionMinimalCollapse3" aria-expanded="false" aria-controls="accordionMinimalCollapse3">Team Members</a>
+                        </h5>
+                    </div>
+                    <div id="accordionMinimalCollapse3" class="collapse" role="tabpanel" aria-labelledby="accordionMinimal3" data-parent="#accordionMinimal">
+                        <div class="card-body">
+                            <p class="mb-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="div-basemap hide">
+        <div class="judul-div-peta">Base Map</div>
+        <div class="isi-div-peta o-y-scroll" id="style-3">
+            <div class="custom-control custom-radio">
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+                        <label class="custom-control-label" for="customRadio">
+                            Open Street Map
+                        </label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio2" name="example1">
+                        <label class="custom-control-label" for="customRadio2">
+                            Google Roadmap
+                        </label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio3" name="example1">
+                        <label class="custom-control-label" for="customRadio3">
+                            Google Satellite
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio4" name="example1">
+                        <label class="custom-control-label" for="customRadio4">
+                            Google Hybrid
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+
+                    <div class="custom-control custom-radio pl-0">
+                        <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+                        <label class="custom-control-label" for="customRadio5">
+                            ESRI World Imagery
+                        </label>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15820.263938912067!2d110.7918447!3d-7.5677854!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf78077339ed9cc14!2sPhicos%20Group%20(IT%20Consultant)!5e0!3m2!1sen!2sid!4v1597288041606!5m2!1sen!2sid" class="map-custom" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+
+<script src="assets/js/jquery-min.js"></script>
+
+
+<script src="assets/js/bootstrap.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- <script src="assets/fontawesome/js/all.js"></script> -->
+
+
+<script>
+    $('#click-search').click( function() {
+        if($(".div-search").hasClass("hide")){
+            $(".div-search").removeClass("hide");
+
+            $(".div-infolayers").removeClass("show");
+            $(".div-infolayers").addClass("hide");
+            $(".div-basemap").removeClass("show");
+            $(".div-basemap").addClass("hide");
+            $(".div-layers").removeClass("show");
+            $(".div-layers").addClass("hide");
+
+            $(".div-search").addClass("show");
+        } else {
+            $(".div-search").addClass("hide");
+            $(".div-search").removeClass("show");
+        } 
+    } );
+
+    $('#click-infolayers').click( function() {
+        if($(".div-infolayers").hasClass("hide")){
+            $(".div-infolayers").removeClass("hide");
+            
+            $(".div-search").removeClass("show");
+            $(".div-search").addClass("hide");
+            $(".div-basemap").removeClass("show");
+            $(".div-basemap").addClass("hide");
+            $(".div-layers").removeClass("show");
+            $(".div-layers").addClass("hide");
+
+            $(".div-infolayers").addClass("show");
+        } else {
+            $(".div-infolayers").addClass("hide");
+            $(".div-infolayers").removeClass("show");
+        } 
+    } );
+    
+    $('#click-basemap').click( function() {
+        if($(".div-basemap").hasClass("hide")){
+            $(".div-basemap").removeClass("hide");
+
+            $(".div-search").removeClass("show");
+            $(".div-search").addClass("hide");
+            $(".div-infolayers").removeClass("show");
+            $(".div-infolayers").addClass("hide");
+            $(".div-layers").removeClass("show");
+            $(".div-layers").addClass("hide");
+
+            $(".div-basemap").addClass("show");
+        } else {
+            $(".div-basemap").addClass("hide");
+            $(".div-basemap").removeClass("show");
+        } 
+    } );
+    
+    $('#click-layers').click( function() {
+        if($(".div-layers").hasClass("hide")){
+            $(".div-layers").removeClass("hide");
+
+            $(".div-basemap").removeClass("show");
+            $(".div-basemap").addClass("hide");
+            $(".div-search").removeClass("show");
+            $(".div-search").addClass("hide");
+            $(".div-infolayers").removeClass("show");
+            $(".div-infolayers").addClass("hide");
+
+
+            $(".div-layers").addClass("show");
+        } else {
+            $(".div-layers").addClass("hide");
+            $(".div-layers").removeClass("show");
+        } 
+    } );
+    
+</script>
+
+
+</body>
+</html>

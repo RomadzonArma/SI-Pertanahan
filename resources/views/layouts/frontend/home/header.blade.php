@@ -1,60 +1,74 @@
-<!-- Navbar Start -->
-
-<header id="topnav" class="defaultscroll sticky">
-    <div class="container">
-        <!-- Logo container-->
-        <a class="logo p-2" href="{{ route('/') }}">
-            <span class="logo-light-mode">
-
-                <img src="{{ asset('img/logo-sip-surakarta-dark.png') }}" class="l-dark" height="60" alt="">
-                {{-- <img src="{{ asset('logo-header/' . $list->logo_footer) }}" class="l-dark" height="60" alt=""> --}}
-                {{-- <img src="{{ asset('logo-header/' . $list->logo_header) }}" class="l-light" height="60" alt=""> --}}
-                <img src="{{ asset('img/logo-sip-surakarta.png') }}" class="l-light" height="60" alt="">
-            </span>
-            {{-- <img src="{{ asset('logo-header/' . $list->logo_header) }}" height="24" class="logo-dark-mode" alt=""> --}}
-        </a>
-
-        <!-- End Logo container-->
-        <div class="menu-extras">
-            <div class="menu-item">
-                <!-- Mobile menu toggle-->
-                <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
-                    <div class="lines">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+<div id="header-holder" class="main-header">
+    <div class="bg-animation">
+        <div class="graphic-show">
+            <img class="fix-size" src="{{asset('pemakaman')}}/assets/images/graphic1.png" alt="">
+            <img class="img img1" src="{{asset('pemakaman')}}/assets/images/graphic1.png" alt="">
+            <img class="img img2" src="{{asset('pemakaman')}}/assets/images/graphic2.png" alt="">
+            <img class="img img3" src="{{asset('pemakaman')}}/assets/images/graphic3.png" alt="">
+        </div>
+    </div>
+    <nav id="nav" class="navbar navbar-default navbar-full">
+        <div class="container-fluid">
+            <div class="container container-nav">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-header">
+                            <button aria-expanded="false" type="button" class="navbar-toggle collapsed"
+                                data-toggle="collapse" data-target="#bs">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="logo-holder" href="index.html">
+                                <!-- <div class="logo" style="width:100px;height:200px"></div> -->
+                                <img src="{{asset('pemakaman')}}/assets/images/custom/logo-txt-light-sm.png"
+                                    style="width:auto;height:50px">
+                            </a>
+                        </div>
+                        <div style="height: 1px;" role="main" aria-expanded="false"
+                            class="navbar-collapse collapse" id="bs">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="peta.html">Peta</a></li>
+                                <!-- <li><a class="login-button" href="signin.html">Login</a></li> -->
+                                <li class="support-button-holder support-dropdown">
+                                    <a class="support-button py-3 px-4" href="#"><i class="fa fa-cog"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i>Login</a></li>
+                                        <!-- <li><a href="#"><i class="fas fa-comments"></i>Start a Live Chat</a></li>
+                                  <li><a href="#"><i class="fas fa-ticket-alt"></i>Open a ticket</a></li>
+                                  <li><a href="#"><i class="fas fa-book"></i>Knowledge base</a></li> -->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </a>
-                <!-- End mobile menu toggle-->
+                </div>
             </div>
         </div>
-
-        <!--Login button Start-->
-        <ul class="buy-button list-inline mb-0">
-
-            <li class="list-inline-item ps-1 mb-0">
-                <a href="{{ route('login') }}">
-                    <div class="login-btn-primary"><span class="btn btn-pills btn-primary">Login</span></div>
-                    <div class="login-btn-light"><span class="btn btn-pills btn-light text-primary">Login</span>
+    </nav>
+    <div id="top-content" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="main-slider">
+                        <div class="slide">
+                            <div class="spacer"></div>
+                            <div class="big-title">Portal Basis Data <span>Pemakaman</span><br>Kota Surakarta.</div>
+                            <p>
+                                Dinas Perumahan dan Kawasan Permukiman
+                            </p>
+                            <!-- <div class="btn-holder">
+                            <a href="signup.html" class="ybtn ybtn-header-color">Register</a>
+                            <a href="peta.html" class="ybtn ybtn-white ybtn-shadow">Lihat Peta</a>
+                        </div> -->
+                        </div>
                     </div>
-                </a>
-            </li>
-        </ul>
-        <!--Login button End-->
-
-        <div id="navigation">
-            <!-- Navigation Menu-->
-            <ul class="navigation-menu nav-light">
-                <li><a href="{{ route('/') }}" class="sub-menu-item">Beranda</a>
-                    <!-- <div class="line"></div> -->
-                </li>
-                <li><a href="{{ route('peta') }}" class="sub-menu-item">Peta</a></li>
-                <li><a href="{{ route('data-tanah') }}" class="sub-menu-item">Data Tanah</a></li>
-                <li><a href="{{ route('data-jalan') }}" class="sub-menu-item">Data Jalan</a></li>
-                <!-- <li><a href="{{ route('register-pemohon') }}" class="sub-menu-item">Registrasi</a></li> -->
-                <!-- <li><a href="javascript:void(0)" class="sub-menu-item">Login</a></li> -->
-            </ul><!--end navigation menu-->
-        </div><!--end navigation-->
-    </div><!--end container-->
-</header><!--end header-->
-<!-- Navbar End -->
+                </div>
+                <div class="col-md-6">
+                    <img class="header-graphic" src="{{asset('pemakaman')}}/assets/images/graphic1.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

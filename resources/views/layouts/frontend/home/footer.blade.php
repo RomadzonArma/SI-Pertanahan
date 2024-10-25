@@ -1,60 +1,52 @@
-<!-- Footer Start -->
-
-<footer class="footer bg-primary"
-    style="background: url('https://static.republika.co.id/uploads/images/xlarge/kompleks-masjid-agung-kesunanan-surakarta-di-solo-jawa-tengah_210731203302-106.jpeg') center center; background-repeat: no-repeat; background-size: cover;">
-    <div class="bg-overlay" style="border-bottom-left-radius: 24px; border-bottom-right-radius: 24px;"></div>
+<div id="footer" class="container-fluid">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="footer-py-60 footer-border">
-                    <div class="row">
-
-                        <div class="col-lg-12 col-12 mb-0 mb-md-6 px-md-4 pb-0 pb-md-2 pt-sm-0 p-0 m-0">
-                            <a href="#" class="logo-footer">
-                                {{-- <img src="{{ asset('logo-footer/' . $list->logo_header) }}" height="72" alt=""> --}}
-                                <img src="{{ asset('img/logo-sip-surakarta.png') }}" height="72" alt="">
-                            </a>
-                            <p class="mt-4 text-white">{{$list->footer ?? 'Aplikasi ini pengelola data utilitas Tanah HP (Hak Pakai) Kota Surakarta dan pengelola pengajuan tanah PRODA (Proyek Operasi Daerah Agreria) berbasis online yang dilakukan oleh DISPERUM KPP'}}</p>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2">
-                            <h5 class="footer-head">Aplikasi Terkait</h5>
-                            <ul class="list-unstyled footer-list mt-1">
-                                <li><a href="javascript:void(0)" class="text-white"><i
-                                            class="uil uil-angle-right-b me-1"></i> Disperum Surakarta</a></li>
-                                <li><a href="javascript:void(0)" class="text-white"><i
-                                            class="uil uil-angle-right-b me-1"></i> Pemkot Surakarta</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 px-md-4 col-12 mt-1 mt-sm-0 pt-2 py-sm-2 text-white">
-                            <h5 class="footer-head">Kontak</h5>
-                            <p class="mt-1">{{$list->alamat ?? 'jl.jend. Sudirman No.02, Kp. baru, Kec. Ps. Kliwon, Kota Surakarta, Jawa Tengah, 57133'}}</p>
-                            <p class="mt-2">{{$list->email ?? 'disperumkpp@gmail.com'}}</p>
-                            <p class="mt-2">{{$list->telp ?? '(0271) 64202021'}}</p>
-                        </div>
-
-                    </div><!--end row-->
+            <div class="col-md-5">
+                <div class="text-md-left text-center">
+                    <img src="{{asset('pemakaman')}}/assets/images/custom/logo-txt-light-sm.png" class="footer-logo-cust">
+                    <div class="text text-white text-md-left mt-4">At vero eos et accusamus et iusto odio
+                        dignissimos<br>
+                        ducimus qui blanditiis praesentium voluptatum deleniti<br>
+                        atququi officia deserunt mollitia animi.</div>
+                    <ul class="social-menu d-md-flex d-block mt-md-4 mt-0">
+                        <li><a class="a-white mr-md-4 mr-0" href="#"><i
+                                    class="fab fa-facebook text-white"></i></a></li>
+                        <li><a class="a-white mr-md-4 mr-0" href="#"><i
+                                    class="fab fa-youtube text-white"></i></a></li>
+                        <li><a class="a-white mr-md-4 mr-0" href="#"><i
+                                    class="fab fa-twitter text-white"></i></a></li>
+                    </ul>
                 </div>
-            </div><!--end col-->
-        </div><!--end row-->
-    </div><!--end container-->
-
-    <div class="footer-py-30">
-        <div class="container text-center">
-            <div class="row align-items-center">
-                <div class="col-12">
-                    <div class="text-center">
-                        <p class="mb-0 text-white">©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> | <a href="https://shreethemes.in/" target="_blank"
-                                class="text-reset">DISPERUMKIMTAN Kota Surakarta</a>.
-                        </p>
+            </div>
+            <div class="col-md-5 mt-md-0 mt-5">
+                <div class="address-holder text-md-left text-center">
+                    <div class="phone"><i class="fas fa-phone"></i>
+                        <a href="tel: 123456789" class="a-white">
+                            00 285 900 38502
+                        </a>
                     </div>
-                </div><!--end col-->
-            </div><!--end row-->
-        </div><!--end container-->
+                    <div class="email"><i class="fas fa-envelope"></i> <a class="a-white"
+                            href="mailto: databaseperumahan@gmail.com">
+                            databaseperumahan@gmail.com
+                        </a></div>
+                    <div class="address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            Jl. Jend. Sudirman No.02, Kp. Baru, Kec. Ps. Kliwon, Kota Surakarta, Jawa Tengah
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="footer-menu-holder text-md-left text-center">
+                    <h4>Laman Terkait</h4>
+                    <ul class="footer-menu">
+                        <li><a class="a-white" href="#">Web Disperum</a></li>
+                        <li><a class="a-white" href="#">Web Kota Surakarta</a></li>
+                        <li><a class="a-white" href="#">Web Jawa Tengah</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</footer><!--end footer-->
-<!-- Footer End -->
+</div>

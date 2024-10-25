@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Model\CustomFront;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
@@ -27,12 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.frontend.home.header', function ($view) {
-            $view->with('list', CustomFront::first());
-        });
-        view()->composer('layouts.frontend.home.footer', function ($view) {
-            $view->with('list', CustomFront::first());
-        });
 
         View::share('plugins', []);
 
